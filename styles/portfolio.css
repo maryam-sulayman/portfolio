@@ -16,6 +16,9 @@ h2 {
   font-size: 30px;
   line-height: 1.5;
 }
+h3 {
+  font-family: "Playfair Display", serif;
+}
 .project-image {
   width: 550px;
   margin: 0;
