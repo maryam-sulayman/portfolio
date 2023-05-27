@@ -9,6 +9,7 @@ h1 {
   font-family: "Playfair Display", serif;
   font-size: 70px;
   font-weight: 600px;
+  margin-bottom: 20px;
 }
 h2 {
   font-family: "Playfair Display", serif;
@@ -20,7 +21,7 @@ img {
   margin: 0;
 }
 .introduction p {
-  font-size: 25px;
+  font-size: 35px;
 }
 .introduction {
   background-color: var(--primary-color);
@@ -44,7 +45,7 @@ img {
 
 @media (max-width: 990px) {
   h1 {
-    font-size: 33px;
+    font-size: 38px;
     margin-bottom: 20px;
   }
   h2 {
@@ -53,9 +54,8 @@ img {
   .introduction p {
     font-size: 20px;
   }
-
   .introduction {
-    padding: 30px 50px;
+    padding: 30px 30px;
   }
   .btn-branding,
   .btn-branding-outline {
@@ -67,7 +67,7 @@ img {
   }
   .project-paragraph {
     text-align: center;
-    padding: 0 45px;
+    padding: 0 30px;
     border-bottom: 1px solid black;
   }
   .last-item {
