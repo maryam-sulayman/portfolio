@@ -1,3 +1,30 @@
+:root {
+  --primary-color: #f9f7fd;
+  --secondary-color: blueviolet;
+  --primary-font: "Playfair Display", serif;
+}
 body {
-  background-color: bisque;
+  font-family: "Work Sans", sans-serif;
+}
+h1 {
+  font-family: var(--primary-font);
+  font-size: 70px;
+}
+h2 {
+  font-size: 30px;
+  line-height: 1.5;
+}
+.introduction p {
+  font-size: 25px;
+  margin: 0;
+}
+.introduction {
+  background-color: var(--primary-color);
+  padding: 150px 50px;
+  text-align: center;
+}
+.btn-branding {
+  background-color: var(--secondary-color);
+  color: white;
+  padding: 18px 20px;
 }
