@@ -16,9 +16,12 @@ h2 {
   font-size: 30px;
   line-height: 1.5;
 }
-img {
+.project-image {
   width: 550px;
   margin: 0;
+}
+.maryam-image {
+  width: 400px;
 }
 .introduction p {
   font-size: 35px;
@@ -42,7 +45,16 @@ img {
   line-height: 2;
   padding: 80px 10px;
 }
-
+.about-me-content {
+  padding: 120px 40px;
+  text-align: center;
+}
+.about-me-content h1 {
+  font-size: 49px;
+}
+.about-me-paragraph {
+  padding: 40px 0;
+}
 @media (max-width: 990px) {
   h1 {
     font-size: 38px;
@@ -77,5 +89,11 @@ img {
     margin-top: -25px;
     margin-bottom: 15px;
     font-size: 25px;
+  }
+  .about-me-content {
+    padding: 10px 30px;
+  }
+  .about-me-content h1 {
+    font-size: 38px;
   }
 }
