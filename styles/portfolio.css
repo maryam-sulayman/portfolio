@@ -58,6 +58,17 @@ h3 {
 .content {
   padding: 40px 0;
 }
+.navbar-head {
+  font-family: "Playfair Display", serif;
+  font-size: 20px;
+  margin-right: 120px;
+}
+.nav-link {
+  margin-left: 50px;
+}
+.nav-link.active {
+  color: var(--secondary-color) !important;
+}
 @media (max-width: 990px) {
   h1 {
     font-size: 38px;
