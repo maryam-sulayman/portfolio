@@ -1,22 +1,26 @@
 :root {
   --primary-color: #f9f7fd;
   --secondary-color: blueviolet;
-  --primary-font: "Playfair Display", serif;
 }
 body {
   font-family: "Work Sans", sans-serif;
 }
 h1 {
-  font-family: var(--primary-font);
+  font-family: "Playfair Display", serif;
   font-size: 70px;
+  font-weight: 600px;
 }
 h2 {
+  font-family: "Playfair Display", serif;
   font-size: 30px;
   line-height: 1.5;
 }
+img {
+  width: 550px;
+  margin: 0;
+}
 .introduction p {
   font-size: 25px;
-  margin: 0;
 }
 .introduction {
   background-color: var(--primary-color);
@@ -27,4 +31,51 @@ h2 {
   background-color: var(--secondary-color);
   color: white;
   padding: 18px 20px;
+}
+.btn-branding-outline {
+  color: var(--secondary-color);
+  border-color: var(--secondary-color);
+  padding: 18px 20px;
+}
+.project-paragraph {
+  line-height: 2;
+  padding: 80px 10px;
+}
+
+@media (max-width: 990px) {
+  h1 {
+    font-size: 33px;
+    margin-bottom: 20px;
+  }
+  h2 {
+    font-size: 17px;
+  }
+  .introduction p {
+    font-size: 20px;
+  }
+
+  .introduction {
+    padding: 30px 50px;
+  }
+  .btn-branding,
+  .btn-branding-outline {
+    padding: 10px 17px;
+  }
+  .btn-branding-outline {
+    margin-top: -20px;
+    margin-bottom: 40px;
+  }
+  .project-paragraph {
+    text-align: center;
+    padding: 0 45px;
+    border-bottom: 1px solid black;
+  }
+  .last-item {
+    border-bottom: none;
+  }
+  .project-titles {
+    margin-top: -25px;
+    margin-bottom: 15px;
+    font-size: 25px;
+  }
 }
