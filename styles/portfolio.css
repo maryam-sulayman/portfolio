@@ -69,6 +69,20 @@ h3 {
 .nav-link.active {
   color: var(--secondary-color) !important;
 }
+.footer-box {
+  background-color: var(--primary-color);
+  padding: 40px 50px;
+  border-radius: 10px;
+}
+.email-link a {
+  text-decoration: none;
+  color: black;
+}
+.social-link a {
+  margin: 30px;
+  font-size: 30px;
+  color: var(--secondary-color);
+}
 @media (max-width: 990px) {
   h1 {
     font-size: 38px;
