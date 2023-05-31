@@ -1,25 +1,25 @@
 :root {
   --primary-color: #3b0944;
-  --secondary-color: #f6e5e5;
-  --tertiary-color: #774181;
+  --secondary-color: #774181;
+  --main-font-family: "Playfair Display", serif;
 }
 body {
   font-family: "Work Sans", sans-serif;
   background-color: #f6e5e5;
 }
 h1 {
-  font-family: "Playfair Display", serif;
+  font-family: var(--main-font-family);
   font-size: 70px;
   font-weight: 600px;
   margin-bottom: 20px;
 }
 h2 {
-  font-family: "Playfair Display", serif;
+  font-family: var(--main-font-family);
   font-size: 30px;
   line-height: 1.5;
 }
 h3 {
-  font-family: "Playfair Display", serif;
+  font-family: var(--main-font-family);
 }
 .project-image {
   width: 550px;
@@ -47,19 +47,19 @@ h3 {
   transition: all 100ms ease-in-out;
 }
 .btn-branding:hover {
-  background-color: var(--tertiary-color);
+  background-color: var(--secondary-color);
   color: white;
 }
 .btn-branding {
-  background-color: var(--tertiary-color);
+  background-color: var(--secondary-color);
   color: white;
 }
 .btn-branding-outline {
-  color: var(--tertiary-color);
-  border-color: var(--tertiary-color);
+  color: var(--secondary-color);
+  border-color: var(--secondary-color);
 }
 .btn-branding-outline:hover {
-  background-color: var(--tertiary-color);
+  background-color: var(--secondary-color);
   color: white;
 }
 .project-paragraph {
@@ -80,12 +80,6 @@ h3 {
 }
 .work-content h2 {
   font-family: "Rock Salt", cursive;
-  margin: 0;
-}
-.work-content {
-  background-color: #774181;
-  color: white;
-  margin: -30px 250px 0;
 }
 .content {
   color: white;
@@ -122,21 +116,33 @@ h3 {
 .social-link a {
   margin: 50px;
   font-size: 50px;
-  color: var(--tertiary-color);
+  color: var(--secondary-color);
 }
 .source-code {
-  color: var(--tertiary-color);
+  color: var(--secondary-color);
   text-decoration: none;
 }
 .source-code:hover {
   text-decoration: underline;
 }
 .icons {
-  color: var(--tertiary-color);
+  color: var(--secondary-color);
   margin-left: 15px;
 }
 .logo {
   max-width: 50px;
+}
+.contact h1 {
+  font-size: 45px;
+  margin-top: 80px;
+  margin-bottom: 30px;
+}
+.email {
+  color: black;
+  text-decoration: none;
+}
+.email:hover {
+  color: #774181;
 }
 @media (max-width: 990px) {
   h1 {
@@ -180,9 +186,16 @@ h3 {
     font-size: 38px;
   }
   .footer-box {
-    padding: 40px 20px;
+    padding: 40px 10px;
   }
   .email-link a {
     font-size: 14px;
+  }
+  .about-me-content h1,
+  .contact h1 {
+    font-size: 35px;
+  }
+  .work-content h2 {
+    margin-bottom: -40px;
   }
 }
