@@ -1,25 +1,25 @@
 :root {
-  --primary-color: #3b0944;
+  --primary-color: #3b0943;
   --secondary-color: #774181;
   --main-font-family: "Playfair Display", serif;
 }
 body {
   font-family: "Work Sans", sans-serif;
-  background-color: #f6e5e5;
+  background-color: #f5e5e4;
 }
 h1 {
   font-family: var(--main-font-family);
   font-size: 70px;
   font-weight: 600px;
-  margin-bottom: 20px;
 }
 h2 {
   font-family: var(--main-font-family);
-  font-size: 30px;
+  font-size: 25px;
   line-height: 1.5;
 }
 h3 {
   font-family: var(--main-font-family);
+  letter-spacing: 1.5px;
 }
 .project-image {
   width: 550px;
@@ -32,18 +32,35 @@ h3 {
   border-radius: 50%;
   max-height: 60px;
 }
-.introduction p {
-  font-size: 35px;
+.intro-image {
+  border-radius: 50%;
+  max-height: 400px;
+  width: 300px;
+  margin-left: 100px;
 }
-.introduction {
-  background-color: var(--primary-color);
-  padding: 100px 40px;
-  text-align: center;
-  color: white;
+.intro-main {
+  margin: 100px 0;
+}
+.intro-main h2 {
+  margin-top: 20px;
+}
+.hello p {
+  font-size: 30px;
+  margin-top: 100px;
+  margin-left: 30px;
+}
+.intro-secondary {
+  font-size: 20px;
+  margin: 50px 40px 50px;
+  text-align: start;
+}
+
+.featured-project {
+  margin: 40px 0;
 }
 .btn-branding,
 .btn-branding-outline {
-  padding: 18px 20px;
+  padding: 15px 20px;
   transition: all 100ms ease-in-out;
 }
 .btn-branding:hover {
@@ -69,18 +86,19 @@ h3 {
 .about-me-content h1 {
   font-size: 49px;
 }
-.about-container,
+
 .work-container {
-  padding: 60px 40px 0;
+  padding: 30px;
   text-align: center;
 }
-.about-me-content,
+
 .work-content {
-  padding: 20px 0;
+  padding: 40px 0;
 }
 .work-content h2 {
-  font-family: "Rock Salt", cursive;
+  letter-spacing: 1.5px;
 }
+
 .content {
   color: white;
   background-color: #3b0944;
@@ -91,6 +109,7 @@ h3 {
   font-family: "Rock Salt", cursive;
   font-size: 25px;
   margin-right: 90px;
+  letter-spacing: 2px;
 }
 .nav-link {
   font-size: 18px;
@@ -102,6 +121,15 @@ h3 {
 }
 .nav-link.active {
   color: var(--primary-color) !important;
+}
+.outro a {
+  color: var(--secondary-color);
+  text-decoration: none;
+}
+
+.outro {
+  margin-bottom: 100px;
+  text-align: center;
 }
 .footer-box {
   background-color: var(--primary-color);
@@ -133,9 +161,10 @@ h3 {
   max-width: 50px;
 }
 .contact h1 {
-  font-size: 45px;
+  font-size: 40px;
   margin-top: 80px;
   margin-bottom: 30px;
+  letter-spacing: 1.5px;
 }
 .email {
   color: black;
@@ -144,7 +173,10 @@ h3 {
 .email:hover {
   color: #774181;
 }
-@media (max-width: 990px) {
+@media (max-width: 450px) {
+  body {
+    margin: 0;
+  }
   h1 {
     font-size: 38px;
     margin-bottom: 20px;
@@ -152,11 +184,50 @@ h3 {
   h2 {
     font-size: 17px;
   }
-  .introduction p {
-    font-size: 20px;
+  h3 {
+    font-size: 18px;
+    margin: 0;
+  }
+  h4 {
+    font-size: 15px;
+  }
+  .hello p {
+    margin: 20px;
+    text-align: center;
+    font-size: 23px;
+  }
+  .intro-main h1 {
+    font-size: 30px;
+  }
+  .intro-main h2 {
+    margin-top: 80px;
+    font-size: 15px;
+  }
+  .intro-main {
+    margin: 0;
+  }
+  .intro-image {
+    margin: 0;
+    width: 100px;
+    position: relative;
+    margin: -170px 0 0 270px;
+  }
+  .intro-secondary {
+    font-size: 16px;
+    margin: 50px 0;
+    text-align: start;
   }
   .introduction {
-    padding: 30px 30px;
+    display: grid;
+    grid-template-columns: 500px;
+  }
+
+  .button {
+    display: block;
+    margin-top: 30px;
+  }
+  .outro {
+    margin: 0;
   }
   .btn-branding,
   .btn-branding-outline {
@@ -166,22 +237,7 @@ h3 {
     margin-top: -20px;
     margin-bottom: 40px;
   }
-  .project-paragraph {
-    text-align: center;
-    padding: 0 30px;
-    border-bottom: 1px solid black;
-  }
-  .last-item {
-    border-bottom: none;
-  }
-  .project-titles {
-    margin-top: -25px;
-    margin-bottom: 15px;
-    font-size: 25px;
-  }
-  .content-container {
-    padding: 10px 30px;
-  }
+
   .content h1 {
     font-size: 38px;
   }
@@ -191,11 +247,8 @@ h3 {
   .email-link a {
     font-size: 14px;
   }
-  .about-me-content h1,
+
   .contact h1 {
     font-size: 35px;
-  }
-  .work-content h2 {
-    margin-bottom: -40px;
   }
 }
