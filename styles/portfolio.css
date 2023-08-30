@@ -5,12 +5,12 @@
 }
 body {
   font-family: "Work Sans", sans-serif;
-  background-color: #f5e5e4;
+  background-color: #f1e7e7;
 }
 h1 {
   font-family: var(--main-font-family);
-  font-size: 70px;
-  font-weight: 600px;
+  font-size: 58px;
+  font-weight: 600;
 }
 h2 {
   font-family: var(--main-font-family);
@@ -20,6 +20,13 @@ h2 {
 h3 {
   font-family: var(--main-font-family);
   letter-spacing: 1.5px;
+}
+section {
+  margin: 0 auto;
+}
+.flower-image {
+  float: right;
+  width: 350px;
 }
 .project-image {
   width: 550px;
@@ -32,12 +39,16 @@ h3 {
   border-radius: 50%;
   max-height: 60px;
 }
+.grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+}
 .intro-image {
   border-radius: 50%;
-  max-height: 400px;
-  width: 300px;
-  margin-left: 100px;
+  width: 100%;
+  width: 215px;
 }
+
 .intro-main {
   margin: 100px 0;
 }
@@ -86,16 +97,13 @@ h3 {
 .about-me-content h1 {
   font-size: 49px;
 }
-
-.work-container {
-  padding: 30px;
+.work {
   text-align: center;
+  margin: 70px 0;
 }
-
-.work-content {
-  padding: 40px 0;
-}
-.work-content h2 {
+.work-title h2 {
+  font-size: 25px;
+  padding: 40px 0 0 30px;
   letter-spacing: 1.5px;
 }
 
@@ -173,48 +181,59 @@ h3 {
 .email:hover {
   color: #774181;
 }
-@media (max-width: 450px) {
+/*For mobile view-port*/
+@media (max-width: 639px) {
   body {
     margin: 0;
   }
   h1 {
     font-size: 38px;
-    margin-bottom: 20px;
   }
   h2 {
-    font-size: 17px;
-  }
-  h3 {
-    font-size: 18px;
-    margin: 0;
-  }
-  h4 {
-    font-size: 15px;
-  }
-  .hello p {
-    margin: 20px;
-    text-align: center;
-    font-size: 23px;
+    font-size: 20px;
   }
   .intro-main h1 {
     font-size: 30px;
-  }
-  .intro-main h2 {
-    margin-top: 80px;
-    font-size: 15px;
+    padding-left: 73px;
+    position: absolute;
   }
   .intro-main {
     margin: 0;
   }
-  .intro-image {
-    margin: 0;
-    width: 100px;
+
+  .intro-main h2 {
+    font-size: 16px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    padding-left: 15px;
+    position: absolute;
+    border-bottom: 1px dashed grey;
+  }
+
+  .flower-image {
     position: relative;
-    margin: -170px 0 0 270px;
+    max-width: 120px;
+  }
+  h3 {
+    font-size: 18px;
+  }
+  h4 {
+    font-size: 18px;
+  }
+  .grid {
+    display: block;
+  }
+  .hello p {
+    margin: 30px 40px 40px 20px;
+    font-size: 23px;
+  }
+
+  .intro-image {
+    display: none;
   }
   .intro-secondary {
     font-size: 16px;
-    margin: 50px 0;
+    margin: 180px 0 0 0;
     text-align: start;
   }
   .introduction {
@@ -222,9 +241,18 @@ h3 {
     grid-template-columns: 500px;
   }
 
+  .work {
+    margin: 150px 8px 0 8px;
+  }
+  .work-title h2 {
+    font-size: 25px;
+    padding: 55px 0 0 30px;
+    position: absolute;
+  }
   .button {
     display: block;
     margin-top: 30px;
+    margin-bottom: -80px;
   }
   .outro {
     margin: 0;
@@ -243,12 +271,29 @@ h3 {
   }
   .footer-box {
     padding: 40px 10px;
+    margin-top: 30px;
   }
   .email-link a {
     font-size: 14px;
   }
 
   .contact h1 {
-    font-size: 35px;
+    font-size: 25px;
+    padding-left: 80px;
+    margin-top: 150px;
+    position: absolute;
+  }
+  .contact-content {
+    padding-left: 80px;
+    margin-top: 210px;
+    position: absolute;
+  }
+
+  .social-link {
+    font-size: 30px;
+    margin: 0;
+  }
+  .work p {
+    margin: 0;
   }
 }
