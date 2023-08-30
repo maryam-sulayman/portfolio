@@ -5,7 +5,7 @@
 }
 body {
   font-family: "Work Sans", sans-serif;
-  background-color: #f1e7e7;
+  background-color: #f0e8e8;
 }
 h1 {
   font-family: var(--main-font-family);
@@ -14,39 +14,30 @@ h1 {
 }
 h2 {
   font-family: var(--main-font-family);
-  font-size: 25px;
+  font-size: 20px;
   line-height: 1.5;
 }
 h3 {
   font-family: var(--main-font-family);
   letter-spacing: 1.5px;
 }
-section {
-  margin: 0 auto;
-}
 .flower-image {
   float: right;
-  width: 350px;
+  width: 100%;
 }
-.project-image {
-  width: 550px;
-  margin: 0;
+.intro-secondary {
+  font-size: 20px;
+  margin: 50px 40px;
+  text-align: start;
+}
+
+.featured-project {
+  margin-top: 40px;
+  margin-bottom: -30px;
 }
 .maryam-image {
-  width: 400px;
-}
-.maryam-image2 {
   border-radius: 50%;
   max-height: 60px;
-}
-.grid {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-}
-.intro-image {
-  border-radius: 50%;
-  width: 100%;
-  width: 215px;
 }
 
 .intro-main {
@@ -62,13 +53,21 @@ section {
 }
 .intro-secondary {
   font-size: 20px;
-  margin: 50px 40px 50px;
+  margin: 50px 40px;
   text-align: start;
 }
-
-.featured-project {
-  margin: 40px 0;
+section {
+  margin: 0 auto;
 }
+.button {
+  margin-top: 30px;
+  display: block;
+}
+.project-image {
+  width: 550px;
+  margin: 0;
+}
+
 .btn-branding,
 .btn-branding-outline {
   padding: 15px 20px;
@@ -90,10 +89,7 @@ section {
   background-color: var(--secondary-color);
   color: white;
 }
-.project-paragraph {
-  line-height: 2;
-  padding: 80px 10px;
-}
+
 .about-me-content h1 {
   font-size: 49px;
 }
@@ -106,7 +102,6 @@ section {
   padding: 40px 0 0 30px;
   letter-spacing: 1.5px;
 }
-
 .content {
   color: white;
   background-color: #3b0944;
@@ -134,14 +129,12 @@ section {
   color: var(--secondary-color);
   text-decoration: none;
 }
-
 .outro {
-  margin-bottom: 100px;
   text-align: center;
 }
 .footer-box {
   background-color: var(--primary-color);
-  padding: 40px 50px;
+
   border-radius: 10px;
   color: white;
 }
@@ -153,6 +146,9 @@ section {
   margin: 50px;
   font-size: 50px;
   color: var(--secondary-color);
+}
+.work p {
+  margin: 0;
 }
 .source-code {
   color: var(--secondary-color);
@@ -183,64 +179,44 @@ section {
 }
 /*For mobile view-port*/
 @media (max-width: 639px) {
-  body {
-    margin: 0;
-  }
-  h1 {
-    font-size: 38px;
-  }
-  h2 {
-    font-size: 20px;
-  }
-  .intro-main h1 {
-    font-size: 30px;
-    padding-left: 73px;
-    position: absolute;
-  }
-  .intro-main {
-    margin: 0;
-  }
-
-  .intro-main h2 {
-    font-size: 16px;
-    padding-top: 40px;
-    padding-bottom: 40px;
-    padding-left: 15px;
-    position: absolute;
-    border-bottom: 1px dashed grey;
-  }
-
-  .flower-image {
-    position: relative;
-    max-width: 120px;
-  }
   h3 {
     font-size: 18px;
   }
   h4 {
-    font-size: 18px;
-  }
-  .grid {
-    display: block;
+    font-size: 17px;
   }
   .hello p {
     margin: 30px 40px 40px 20px;
     font-size: 23px;
   }
-
-  .intro-image {
-    display: none;
+  .intro-main {
+    margin: 0;
+  }
+  .intro-main h1,
+  .intro-main h2 {
+    position: absolute;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+  }
+  .intro-main h1 {
+    font-size: 30px;
+  }
+  .intro-main h2 {
+    font-size: 16px;
+    padding-top: 40px;
+  }
+  .flower-image {
+    position: relative;
+    max-width: 120px;
   }
   .intro-secondary {
     font-size: 16px;
     margin: 180px 0 0 0;
-    text-align: start;
-  }
-  .introduction {
-    display: grid;
-    grid-template-columns: 500px;
-  }
 
+    border-top: 1px dashed grey;
+    padding-top: 40px;
+  }
   .work {
     margin: 150px 8px 0 8px;
   }
@@ -249,14 +225,7 @@ section {
     padding: 55px 0 0 30px;
     position: absolute;
   }
-  .button {
-    display: block;
-    margin-top: 30px;
-    margin-bottom: -80px;
-  }
-  .outro {
-    margin: 0;
-  }
+
   .btn-branding,
   .btn-branding-outline {
     padding: 10px 17px;
@@ -276,24 +245,90 @@ section {
   .email-link a {
     font-size: 14px;
   }
-
   .contact h1 {
-    font-size: 25px;
-    padding-left: 80px;
+    font-size: 28px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
     margin-top: 150px;
     position: absolute;
   }
   .contact-content {
-    padding-left: 80px;
-    margin-top: 210px;
+    margin-top: 180px;
+    width: 100%;
+    justify-content: center;
     position: absolute;
   }
-
   .social-link {
     font-size: 30px;
     margin: 0;
   }
-  .work p {
+}
+/*For Tablet view-port*/
+@media (min-width: 640px) {
+  .intro-main h1,
+  .intro-main h2 {
+    position: absolute;
+    width: 100%;
+  }
+
+  .intro-main h1 {
+    font-size: 40px;
+    padding-left: 80px;
+  }
+  .intro-main h2 {
+    font-size: 25px;
+    padding-top: 60px;
+    padding-left: 29px;
+  }
+  .intro-main {
     margin: 0;
+  }
+  .intro-secondary {
+    margin-top: 160px;
+    padding-top: 40px;
+  }
+  .flower-image {
+    width: 280px;
+  }
+  .contact h1 {
+    font-size: 38px;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    position: absolute;
+    margin-top: 250px;
+  }
+  .contact-content {
+    margin-top: 300px;
+    width: 100%;
+    justify-content: center;
+    position: absolute;
+  }
+
+  /*Desktop*/
+  @media (min-width: 960px) {
+    .hello p {
+      font-size: 45px;
+    }
+    .intro-main h1,
+    .intro-main h2 {
+      text-align: center;
+    }
+    .flower-image {
+      width: 300px;
+    }
+    .intro-main h1 {
+      font-size: 60px;
+      margin-bottom: 50px;
+    }
+    .intro-main h2 {
+      font-size: 30px;
+      margin: 50px 0;
+    }
+    .intro-secondary {
+      margin-top: 200px;
+      padding-top: 40px;
+    }
   }
 }
