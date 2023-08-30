@@ -19,7 +19,11 @@ h2 {
 }
 h3 {
   font-family: var(--main-font-family);
+
   letter-spacing: 1.5px;
+}
+h4 {
+  font-size: 17px;
 }
 .flower-image {
   float: right;
@@ -34,6 +38,7 @@ h3 {
 .featured-project {
   margin-top: 40px;
   margin-bottom: -30px;
+  padding: 0 auto;
 }
 .maryam-image {
   border-radius: 50%;
@@ -134,7 +139,8 @@ section {
 }
 .footer-box {
   background-color: var(--primary-color);
-
+  padding: 40px 10px;
+  margin-top: 30px;
   border-radius: 10px;
   color: white;
 }
@@ -179,6 +185,10 @@ section {
 }
 /*For mobile view-port*/
 @media (max-width: 639px) {
+  body {
+    padding: 20px;
+    margin: 0;
+  }
   h3 {
     font-size: 18px;
   }
@@ -238,10 +248,7 @@ section {
   .content h1 {
     font-size: 38px;
   }
-  .footer-box {
-    padding: 40px 10px;
-    margin-top: 30px;
-  }
+
   .email-link a {
     font-size: 14px;
   }
