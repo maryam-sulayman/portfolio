@@ -102,7 +102,6 @@ header h3 {
 }
 .home-grid-2 img {
   border-radius: 50%;
-  max-height: 350px;
   display: block;
   margin: 50px auto;
 }
@@ -309,7 +308,6 @@ header h3 {
 
 @media (min-width: 640px) {
   /*home page*/
-
   .navbar a {
     font-size: 20px;
   }
@@ -341,6 +339,9 @@ header h3 {
 }
 /*desktop*/
 @media (min-width: 960px) {
+  .home-grid-2 img {
+    max-height: 350px;
+  }
   .navbar a {
     margin-left: 180px;
   }
