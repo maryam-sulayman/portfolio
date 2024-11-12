@@ -4,7 +4,7 @@
 }
 /* general styling */
 body {
-  background-color: #e6d9d9;
+  background-color: #d3c4bc;
   font-family: "Work Sans", sans-serif;
 }
 h1,
@@ -76,7 +76,16 @@ h4 {
 }
 /* home-page styling*/
 header {
-  margin-bottom: 100px;
+  margin-bottom: 80px;
+  padding: 20px;
+  background-image: url("../images/maryam-pic-6.png");
+  background-position: right;
+  background-size: contain;
+  background-repeat: no-repeat;
+
+}
+.overlay{
+  background-color: rgba(0, 0, 0, 0.385);
 }
 header p {
   font-size: 35px;
@@ -84,31 +93,42 @@ header p {
   font-weight: 300;
 }
 header h1 {
-  margin-bottom: 20px;
   font-weight: 600;
-  text-align: center;
-  font-size: 75px;
+  font-size: 80px;
   letter-spacing: 2px;
+  color: #280004;
 }
 header h3 {
-  text-align: center;
   font-size: 25px;
   font-weight: 300;
   letter-spacing: 1.5px;
+  color: wheat;
+}
+.home-grid-1{
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  margin-left: -130px;
+}
+.home-grid-1 a {
+  text-decoration: none;
+  color: #280004;
+}
+.home-grid-1 a:hover {
+  color:#92585d;
+ text-decoration:overline;
 }
 .home-grid {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
+  display: flex;
+  margin-left:70px;
 }
 .home-grid-2 img {
   border-radius: 50%;
   display: block;
-  margin: 50px auto;
+  margin-top: 40px;
 }
-.main-content p {
-  font-size: 20px;
-  font-weight: 300;
-  margin-bottom: 80px;
+.maryam-pic-two{
+  margin-right: 150px;
 }
 .section-two {
   margin-top: 60px;
@@ -116,7 +136,6 @@ header h3 {
 .section-two h2 {
   letter-spacing: 2px;
   font-size: 30px;
-  text-align: center;
   margin-bottom: 50px;
   font-weight: 600;
 }
@@ -235,10 +254,6 @@ header h3 {
     float: right;
     margin: 10px;
   }
-  .main-content p {
-    margin: -70px 0 0 0;
-    font-size: 16px;
-  }
   .section-two h2 {
     font-size: 19px;
     margin: -30px 0 30px 0;
@@ -305,7 +320,7 @@ header h3 {
 }
 /*Tablet viewport*/
 
-@media (min-width: 640px) {
+@media (max-width: 640px) {
   /*home page*/
   .navbar a {
     font-size: 20px;
@@ -322,11 +337,6 @@ header h3 {
   .home-grid-2 img {
     max-height: 280px;
     margin: 100px 0 0 20px;
-  }
-  .main-content p {
-    border-top: 1px dashed grey;
-    padding: 40px 0;
-    margin: -50px 0 0 0;
   }
   /*work page*/
   .grid-1,
