@@ -1,186 +1,24 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Maryam Sulayman is a junior
-    developer who is based in the UK. Maryam comes from a scientific background
-    with a first-class degree in biomedical science. She has a new-found passion
-    for coding and is open for new job opportunities. She is equally happy to
-    collaborate on new projects with other developers."
-    />
-    <title>Maryam Sulayman's Portfolio</title>
+    <title>portfolio</title>
     <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
-      crossorigin="anonymous"
-    />
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
-      crossorigin="anonymous"
-    ></script>
-    <link rel="stylesheet" href="styles/portfolio.css" />
-    <script
-      src="https://kit.fontawesome.com/ccb0b94de3.js"
-      crossorigin="anonymous"
-    ></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Playfair+Display:wght@400;600;700&family=Work+Sans:wght@300;400&display=swap"
-      rel="stylesheet"
-    />
+  href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+  rel="stylesheet"
+/>
+
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="/" title="Home">
-          <img
-            src="images/maryam-pic3.png"
-            class="img-fluid maryam-image"
-            alt="Image of Maryam Sulayman"
-          />
-        </a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNavAltMarkup"
-          aria-controls="navbarNavAltMarkup"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div class="navbar-nav">
-            <a class="nav-link active" aria-current="page" href="/" title="Home"
-              >Home</a
-            >
-            <a class="nav-link" href="work.html " title="Maryam's work">Work</a>
-            <a class="nav-link" href="contact.html" title="Contact Maryam"
-              >Contact</a
-            >
-          </div>
-        </div>
-      </div>
-    </nav>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+    <form name="contact" netlify netlify-honeypot="bot-field" hidden>
+  <input type="text" name="name" />
+  <input type="email" name="email" />
+  <textarea name="message"></textarea>
+</form>
 
-    <header>
-      <div class="overlay">
-      <div class="home-grid">
-        <div class="home-grid-2">
-          <img src="images/maryam-pic.png" class="img-fluid maryam-pic-two" />
-        </div>
-        <div class="home-grid-1">
-          <h1>Maryam Sulayman</h1>
-          <br/>
-          <h3><a href="/">React </a>| <a href="/">Vue </a> | <a href="/">JavaScript </a> | <a href="/">UX/UI </a> | <a href="/">Research </a></h3>
-          <h3>Software Engineer</h3>
-          <h3>London, United Kingdom</h3>
-        </div>
-       
-      </div>
-      </div>
-    </header>
-    <div class="container">
-      <hr />
-      <section class="section-two">
-        <h2>Featured projects</h2>
-        <div class="container">
-          <div class="row featured-projects">
-            <div class="col">
-              <img
-                src="images/dictionary.JPG"
-                alt="Dictionary app project image preview"
-                class="img-fluid rounded shadow p-2"
-              />
-              <div class="row featured-project-1">
-                <h3>Dictionary App</h3>
-                <div class="col">
-                  <p>Built using REACT, CSS & Bootstrap</p>
-                </div>
-                <div class="col">
-                  <a
-                    href="https://teal-moonbeam-a45a06.netlify.app/"
-                    class="button-outline"
-                    title="Go to project"
-                    target="_blank"
-                    >Launch Project</a
-                  >
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <img
-                src="images/weather.png"
-                alt="Weather app project image preview"
-                class="img-fluid rounded shadow p-2"
-              />
-              <div class="row featured-project-2">
-                <h3>Weather App</h3>
-                <div class="col">
-                  <p>Built using HTML, CSS & JavaScript</p>
-                </div>
-                <div class="col">
-                  <a
-                    href="https://regal-horse-7fb07f.netlify.app/"
-                    class="button-outline"
-                    title="Go to project"
-                    target="_blank"
-                    >Launch Project</a
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="outro">
-            <p class="text-center mt-5 mb-5">
-              You can check out the rest of my work here:
-              <a href="work.html" title="Projects page">Projects</a>
-            </p>
-          </div>
-        </div>
-      </section>
-      <footer>
-        <div class="footer-box d-flex justify-content-between">
-          <div>
-            <h3>Work Enquiry</h3>
-            <p>Let's work together</p>
-          </div>
-          <div>
-            <a href="/contact.html" class="button" title="Contact Maryam">
-              Contact me</a
-            >
-          </div>
-        </div>
-        <hr />
-        <div class="social-links">
-          <a
-            href="https://www.linkedin.com/in/maryam-sulayman-4484601b3/"
-            title="LinkedIn"
-            target="_blank"
-            ><i class="fa-brands fa-linkedin"></i
-          ></a>
-          <a
-            href="https://github.com/maryam-sulayman"
-            title="Github"
-            target="_blank"
-          >
-            <i class="fa-brands fa-github"></i
-          ></a>
-          <a
-            href="mailto:muhammedmariam80@yahoo.co.uk"
-            title="Email"
-            target="_blank"
-            ><i class="fa-solid fa-envelope"></i
-          ></a>
-        </div>
-      </footer>
-    </div>
   </body>
 </html>

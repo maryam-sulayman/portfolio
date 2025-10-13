@@ -1,0 +1,42 @@
+.site-footer{
+  width: 100%;
+  background: #0f0f0f;
+  border-top: 1px solid rgba(255,255,255,.06);
+  margin-top: 2.5rem;
+}
+
+/* Inner container matches your sections (centered) */
+.footer-inner{
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 1.2rem 2rem;
+  display: flex;
+  align-items: center;
+flex-direction: column;
+  color: #cfcfcf;
+}
+
+/* Links */
+.footer-links{
+  display: flex;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+}
+.footer-links a{
+  color: #f2a6b3;
+  text-decoration: none;
+  font-weight: 100;
+}
+.footer-links a:hover{ opacity: .9; }
+
+/* Stack nicely on mobile */
+@media (max-width: 700px){
+  .footer-inner{
+    flex-direction: column;
+    text-align: center;
+    gap: .6rem;
+  }
+  .footer-links{
+    justify-content: center;
+  }
+}

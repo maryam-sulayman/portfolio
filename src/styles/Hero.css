@@ -1,0 +1,118 @@
+/* layout */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6rem;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  align-items: center;
+  gap: 3rem;
+  width: 100%;
+  padding: 0 2rem;
+}
+
+/* left */
+.hero-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2rem;
+}
+
+.hero-img {
+  width: 400px;
+  height: 430px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: 50% 12%;
+  box-shadow: 18px 18px 28px rgba(0,0,0,0.35); 
+}
+
+/* text */
+.hero-text h1 { font-size: 3rem; color: #fff; }
+.hero-text span { color: #f2a6b3; }
+.hero-text p { color: #cfcfcf; line-height: 1.6; margin-bottom: 1.2rem; }
+.hero-buttons { display: flex; gap: 1rem; }
+
+.btn {
+  background: #212428;
+  color: #f2a6b3;
+  padding: 1.4rem;
+  border: none;
+  font-weight: 600;
+  box-shadow: rgba(0, 0, 0, 0.15) 10px 10px 12px;
+  cursor: pointer;
+  transition: transform .3s ease, background .3s ease;
+  font-size: 1.2rem;
+}
+.btn:hover { background: #272b2f; transform: translateY(-3px); }
+
+/* cards */
+.about-card,
+.skills-card {
+  padding: 3rem;
+  color: #e9e9e9;
+   box-shadow: rgba(0, 0, 0, 0.15) 10px 10px 12px;
+}
+
+.hero-about h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1.2rem;
+}
+.hero-about p { line-height: 1.7; color: #cfcfcf; margin-bottom: 1rem; }
+
+/* Skills card spans both columns */
+.skills-card {
+  grid-column: 1 / -1;
+  margin-top: .5rem;
+}
+.skills-card h3 {
+  font-weight: 800;
+  margin-bottom: 1rem;
+  font-size: 2rem;
+}
+
+/* Icon grid */
+.skills-grid {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(72px, 1fr));
+  gap: 1rem 1.25rem;
+  align-items: center;
+}
+
+.skill {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .4rem;
+  opacity: 0.95;
+  transition: transform .2s ease, opacity .2s ease;
+}
+.skill img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  filter: drop-shadow(6px 6px 10px rgba(0,0,0,0.25));
+}
+.skill span {
+  font-size: .8rem;
+  color: #cfcfcf;
+}
+.skill:hover { transform: translateY(-3px); opacity: 1; }
+
+/* mobile */
+@media (max-width: 980px) {
+  .hero-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .hero-left, .hero-about { align-items: center; text-align: center; }
+  .hero-img { width: 220px; height: 220px; }
+  .skills-grid { grid-template-columns: repeat(auto-fit, minmax(56px, 1fr)); }
+}
