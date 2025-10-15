@@ -13,6 +13,7 @@ html, body {
   background: #212428;
   color: #f5f5f5;
   scroll-behavior: smooth;
+  scroll-padding-top: 120px;
 }
 
 section {

@@ -60,7 +60,7 @@ const PROJECTS = [
     type: "mobile",
     description:
       "A mobile health app that helps users track their cardiovascular health and lifestyle habits. It estimates cardiovascular risk using user inputs like diet, sleep, and activity levels. I focused on creating a clean, friendly interface with clear feedback and easy navigation.",
-    tags: ["UI Design", "React Native", "Accessibility", "Research",],
+    tags: ["Health App", "Data-Driven UI", "Habit Tracking", "Figma" , "Wireframing" ],
   },
   {
     title: "Hotel Hive",
@@ -68,7 +68,7 @@ const PROJECTS = [
     type: "mobile",
     description:
       "A mobile booking app designed to make finding and reserving hotel rooms fast and easy. I built a modern UI using React Native and Firebase.",
-    tags: ["UX", "Figma", "React Native", "Firebase" ],
+    tags: ["Hotel Booking", "Figma", "UI Design", "Information Architecture", "Usability Testing"],
   },
    {
     title: "BookMySpot",
@@ -76,7 +76,7 @@ const PROJECTS = [
     images: [book1, book2, book3, book5, book6, book7, book8, book9],
     description:
       "A parking app that helps users find and reserve available parking spaces nearby. I worked on simplifying the user journey through user research, ensuring that each step feels intuitive and fast. The prototype focuses on accessibility and real-world usability.",
-    tags: ["UX", "User Research", "Figma","Prototyping"],
+    tags: ["Parking App", "User Journey", "Low/Hi-Fidelity Prototypes", "Maps & Geolocation"],
   },
        {
     title: "BookMySpot - web",
@@ -84,7 +84,7 @@ const PROJECTS = [
     images: [bookdesktop1, bookdesktop2, bookdesktop3, bookdesktop4, bookdesktop5, bookdesktop6, bookdesktop7, bookdesktop8],
     description:
       "The web version of BookMySpot, built for desktop users who prefer a larger interface. It mirrors the mobile flow but adds advanced admin and analytics dashboards. I designed and developed it using React, Node.js, and MySQL for a full-stack experience.",
-    tags: ["UX", "React", "Node.js",  "MySQL", "Web"],
+    tags: ["Admin Dashboards", "Responsive Web Design", "Forms & Validation", "Role-based UI"],
   },
      {
     title: "Chowdeck",
@@ -92,7 +92,7 @@ const PROJECTS = [
     images: [chow1, chow2, chow3, chow4, chow5, chow6, chow7, chow8],
     description:
       "A concept redesign of a food delivery platform aimed at improving user flow and overall brand feel. I reworked the restaurant discovery experience, making it easier for users to browse, compare, and order their meals quickly.",
-    tags: ["UX", "Figma", "Prototyping", "Web"],
+    tags: ["Food Delivery", "Figma", "Content Strategy", "User Flow", "Web"],
   },
      {
     title: "Group5",
@@ -100,7 +100,7 @@ const PROJECTS = [
     type: "mobile",
     description:
       "A collaborative food ordering app designed for group or team meals. The goal was to make coordinating shared orders effortless while keeping the UI simple and visually consistent across screens.",
-    tags: ["UX", "Figma", "Mobile", "Accessibility"],
+    tags: ["Real-time UX", "Mobile-First", "Figma", "Accessibility", "Usability Testing"],
   },
      {
     title: "Lasgidi",
@@ -108,13 +108,14 @@ const PROJECTS = [
     images: [lagos1, lagos2, lagos3, lagos4,],
     description:
       "A tourism and events website showcasing the best of Lagos. Built with HTML and CSS, it focuses on responsive design and smooth navigation across devices, creating an engaging browsing experience for visitors.",
-    tags: ["UX", "HTML/CSS", "Responsiveness", "Web" ],
+    tags: ["Responsive Design", "Figma", "Information Architecture", "Content Design"],
   },
 ];
 export default function Projects() {
   const [projectIndex, setProjectIndex] = useState(0);
   const [imageIndices, setImageIndices] = useState([]);
   const viewportRef = useRef(null);
+const slideRefs = useRef([]);
 
   useEffect(() => {
     setImageIndices(PROJECTS.map(() => 0));
@@ -149,23 +150,29 @@ export default function Projects() {
     else if (offsetX > t) prevImg(pi);
   };
 
+
+const onThumbClick = (pi, i) => {
+  setImg(pi, i);
+  // wait for the image state to commit, then scroll
+  requestAnimationFrame(() => {
+    slideRefs.current[pi]?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+      inline: "nearest",
+    });
+  });
+};
+
+
+
+
   return (
     <section className="projects-page" id="projects">
       <div className="projects-header">
         <h1>My projects</h1>
         <p className="muted">A list of all my previous work.</p>
       </div>
-<div className="proj-progress">
-  <div className="bar">
-    <div
-      className="fill"
-      style={{ width: `${((projectIndex + 1) / PROJECTS.length) * 100}%` }}
-    />
-  </div>
-  <div className="count">
-    {projectIndex + 1} / {PROJECTS.length}
-  </div>
-</div>
+
 
       <div className="carousel">
 <button className="nav-cta left" onClick={prevProject} disabled={projectIndex === 0}>
@@ -191,6 +198,7 @@ export default function Projects() {
                       dragConstraints={{ left: 0, right: 0 }}
                       dragElastic={0.2}
                       onDragEnd={(_, info) => onSwipe(pi, info.offset.x)}
+                      ref={(el) => (slideRefs.current[pi] = el)}
                     >
                       <div className={`device-frame ${p.type === "desktop" ? "desktop" : "mobile"}`}>
                         <img
@@ -222,11 +230,26 @@ export default function Projects() {
 
                     {/* RIGHT: text */}
                     <div className="info-card">
-                      <div>
-                      <h2>{p.title}</h2>                     
-                      <p className="desc">{p.description}</p>
-                      <ul className="tags">{p.tags?.map(t => <li key={t}>{t}</li>)}</ul>
-                      </div>
+                  <div>
+    {/* project dots above title */}
+<div className="proj-indicator">
+  <div className="proj-dots">
+    {PROJECTS.map((_, i) => (
+      <button
+        key={i}
+        className={`dot ${i === projectIndex ? "active" : ""}`}
+        onClick={() => goToProject(i)}
+        aria-label={`Go to project ${i + 1} of ${PROJECTS.length}`}
+      />
+    ))}
+  </div>
+  <span className="proj-count">{projectIndex + 1} / {PROJECTS.length}</span>
+</div>
+
+    <h2>{p.title}</h2>
+    <p className="desc">{p.description}</p>
+    <ul className="tags">{p.tags?.map(t => <li key={t}>{t}</li>)}</ul>
+  </div>
                                           <div className="screens">
   <h4>Screens</h4>
   <div className="thumbs-right">
@@ -234,7 +257,7 @@ export default function Projects() {
       <button
         key={i}
         className={`thumb ${i === idx ? "active" : ""}`}
-        onClick={() => setImg(pi, i)}
+        onClick={() => onThumbClick(pi, i)}
         aria-label={`Show screen ${i + 1}`}
       >
         <img src={img} alt={`${p.title} ${i + 1}`} />
