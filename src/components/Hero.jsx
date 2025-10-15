@@ -46,16 +46,25 @@ export default function Hero() {
               Hi, I'm <span>Maryam Sulayman</span>
             </h1>
             <p>
-              I'm a motivated web and mobile developer with a growing focus on
-              cloud computing and secure full-stack application design.
+              I'm a motivated UX/UI designer with experience building and designing user-friendly interfaces. 
+              I'm also a web and mobile developer with a focus on user experience and accessibility.
             </p>
 
             <div className="hero-buttons">
-              <button className="btn">UX/UI</button>
-              <button className="btn">Researcher</button>
-              <button className="btn">Data Analyst</button>
-              <button className="btn">Software Developer</button>
+              <a className="btn primary"
+                href="/maryam-sulayman-cv.pdf"
+                target="_blank" rel="noreferrer"
+                aria-label="Open my CV in a new tab">
+                VIEW CV
+              </a>
+
+              <a className="btn"
+                href="mailto:muhammedmariam80@yahoo.co.uk?subject=Project%20inquiry"
+                aria-label="Email Maryam to hire">
+                HIRE ME
+              </a>
             </div>
+
           </div>
         </motion.div>
 
@@ -69,23 +78,18 @@ export default function Hero() {
           <div className="about-card">
             <h2>About me</h2>
             <p>
-              I’m a junior web and mobile developer with a growing focus on
-              cloud computing and intuitive user experience design. Currently
-              studying towards the AWS Solutions Architect Associate
-              certification, I’m passionate about building responsive,
-              accessible digital products that solve real-world problems and
-              enhance daily experiences.
+            My journey into tech didn't follow the traditional path. After graduating with a First-class degree in Biomedical Sciences, I taught myself to code through online courses, bootcamps, and personal projects. I fell in love with the blend of creativity and logic that tech offers.
             </p>
             <p>
-              My hands-on experience includes building full-stack web and mobile
-              applications using React, React Native, and Vue. I’ve also worked
-              on client and real-world university projects that involve
-              registration systems, dashboards, and customer-facing tools.
+      I started as a Frontend Developer, building responsive and accessible web applications. That's where I discovered my passion for UX/UI design. I loved how it's centred around understanding users and their needs, combining problem-solving with creativity.
+            </p>
+            <p>
+              Today, I work across the full design and development process, from user research and wireframing to building full-stack applications with React and Vue. I use tools like Figma and Adobe XD to create intuitive, visually appealing interfaces that put users first.
             </p>
           </div>
                {/* full-width Skills card */}
         <motion.div
-          className="skills-card"
+          className="skills-card skills-responsive"
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.35 }}

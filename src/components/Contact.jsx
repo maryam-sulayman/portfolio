@@ -19,7 +19,7 @@ export default function Contact() {
   return (
     <section id="contact" className="contact-section">
       <div className="contact-header">
-        <h1>Contact me</h1>
+        <h1>Contact</h1>
         <p className="muted">
           I’m currently open to UX/UI roles, Data analyst roles, and freelance work. Prefer email or LinkedIn -
           I usually reply within 24 hours.
@@ -35,7 +35,7 @@ export default function Contact() {
           viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 0.5 }}
         >
-          <h3>Let’s connect</h3>
+          <h3>Let’s connect 😊</h3>
 
           <ul className="info-list">
             <li>

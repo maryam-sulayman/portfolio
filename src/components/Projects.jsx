@@ -8,6 +8,8 @@ import health1 from "../images/projects/health/health-01.png";
 import health2 from "../images/projects/health/health-02.png";
 import health3 from "../images/projects/health/health-03.png";
 import health4 from "../images/projects/health/health-04.png";
+import health5 from "../images/projects/health/health-05.png";          
+import health6 from "../images/projects/health/health-06.png";
 import hotel1 from "../images/projects/hotel/hotel-01.png";
 import hotel2 from "../images/projects/hotel/hotel-02.png";
 import hotel3 from "../images/projects/hotel/hotel-03.png";
@@ -54,7 +56,7 @@ import bookdesktop8 from "../images/projects/bookdesktop/bookdesktop-08.png";
 const PROJECTS = [
   {
     title: "CardioTrack",
-    images: [health1, health2, health3, health4],
+    images: [health1, health2, health3, health4, health5, health6],
     type: "mobile",
     description:
       "A mobile health app that helps users track their cardiovascular health and lifestyle habits. It estimates cardiovascular risk using user inputs like diet, sleep, and activity levels. I focused on creating a clean, friendly interface with clear feedback and easy navigation.",
