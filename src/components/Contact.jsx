@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { Mail, Linkedin, Github, Phone, Copy, Check, MapPin } from "lucide-react";
 import "../styles/Contact.css";
 
 export default function Contact() {
   const [copied, setCopied] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [sending, setSending] = useState(false);
+  const modalTimer = useRef(null);
+
   const email = "muhammedmariam80@yahoo.co.uk";
-  const [notice, setNotice] = useState(null);
 
   const copyEmail = async () => {
     try {
@@ -17,29 +19,49 @@ export default function Contact() {
     } catch {}
   };
 
-  // Netlify AJAX submit
+  const closeModal = () => {
+    setIsModalOpen(false);
+    if (modalTimer.current) {
+      clearTimeout(modalTimer.current);
+      modalTimer.current = null;
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSending(true);
-    const form = e.target;
+    const form = e.currentTarget;
     const data = new FormData(form);
+    if (!data.get("form-name")) data.set("form-name", "contact");
 
-  try {
-  await fetch("/", {
-    method: "POST",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: new URLSearchParams(data).toString(),
-  });
-  form.reset();
-  setNotice({ type: "success", text: "Thanks! I’ll get back to you soon." });
-  // auto-hide after 8s (optional)
-  setTimeout(() => setNotice(null), 8000);
-} catch (err) {
-  console.error(err);
-  setNotice({ type: "error", text: "Sorry, something went wrong. Please email me instead." });
-}
+    try {
+      await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(data).toString(),
+      });
 
+      setSending(false);
+      form.reset();
+      setIsModalOpen(true);
+
+      // auto-close after 6s (remove if you want manual close only)
+      modalTimer.current = setTimeout(closeModal, 6000);
+    } catch (err) {
+      console.error(err);
+      setSending(false);
+      alert("Sorry, something went wrong. Please email me instead.");
+    }
   };
+
+  // lock/unlock background scroll when modal opens
+  useEffect(() => {
+    document.body.classList.toggle("modal-open", isModalOpen);
+    return () => {
+      document.body.classList.remove("modal-open");
+      if (modalTimer.current) clearTimeout(modalTimer.current);
+    };
+  }, [isModalOpen]);
 
   return (
     <section id="contact" className="contact-section">
@@ -120,7 +142,7 @@ export default function Contact() {
           viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 0.5, delay: 0.1 }}
         >
-          {/* Netlify needs these at the top */}
+          {/* Netlify registration fields */}
           <input type="hidden" name="form-name" value="contact" />
           <p style={{ display: "none" }}>
             <label>Don’t fill this out: <input name="bot-field" /></label>
@@ -151,30 +173,29 @@ export default function Contact() {
             <button type="submit" className="btn-primary" disabled={sending}>
               {sending ? "Sending..." : "Send message"}
             </button>
-            <a className="btn-ghost" href={`mailto:${email}?subject=Hello%20Maryam`}>
-              Email instead
-            </a>
+            <a className="btn-ghost" href={`mailto:${email}?subject=Hello%20Maryam`}>Email instead</a>
           </div>
 
-          {/* polite success note */}
-          <div aria-live="polite">
-            <div aria-live="polite">
-  {notice && (
-    <div className={`toast ${notice.type}`}>
-      {notice.text}
-      <button
-        type="button"
-        className="toast-close"
-        aria-label="Dismiss"
-        onClick={() => setNotice(null)}
-      >
-        ×
-      </button>
-    </div>
-  )}
-</div>
-
-          </div>
+          {/* Success Modal */}
+          {isModalOpen && (
+            <div
+              className="modal-overlay"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="contact-success-title"
+              onClick={closeModal}
+              tabIndex={-1}
+            >
+              <div className="modal-card" onClick={(e) => e.stopPropagation()}>
+                <h3 id="contact-success-title">Thanks! 🎉</h3>
+                <p>I’ll get back to you within 24 hours.</p>
+                <div className="modal-actions">
+                  <button className="btn-primary" type="button" onClick={closeModal}>Close</button>
+                  <a className="btn-ghost" href={`mailto:${email}?subject=Follow-up`}>Send an Email</a>
+                </div>
+              </div>
+            </div>
+          )}
         </motion.form>
       </div>
     </section>
