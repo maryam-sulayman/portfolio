@@ -132,7 +132,7 @@ input:focus, textarea:focus{
   padding: 1rem
   }
  .availability { font-size: 0.95rem; }
- textarea {
+ textarea::placeholder {
   font-size: 0.85rem;
  }
  .info-card-contact{ gap:1.2rem; }
