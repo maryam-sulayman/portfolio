@@ -141,14 +141,17 @@
   }
   .about-card, .skills-card { padding: 2rem; }
   .skills-grid { grid-template-columns: repeat(auto-fit, minmax(56px, 1fr)); }
-  .hero-text h1, .hero-about h2 { font-size: 2.3rem;}
+  .hero-text h1, .hero-about h2 { font-size: 2rem;}
+  .hero-text p, .hero-about p { font-size: 0.95rem; }
 
 }
 
 @media (max-width: 480px) {
-  .hero { padding: 3rem 1.25rem; }
+  .hero { padding: 5rem 0; }
+  .hero-grid { padding: 0 1rem;  }
   .hero-text h1 { font-size: 2rem; line-height: 1.15; }
-  .hero-text p { font-size: .95rem; }
+  .hero-about h2 { font-size: 2rem; }
+  .hero-text p { font-size: .95rem; margin-top: 1rem; }
   .hero-img { width: 170px; height: 170px; object-position: 50% 18%; }
   .about-card, .skills-card { padding: 1.25rem; }
   .skills-card h3 { font-size: 1.25rem; }
@@ -157,6 +160,7 @@
   .skill span { font-size: .75rem; }
   .btn { padding: .9rem 1rem; font-size: .95rem; }
 }
+
 
 @media (max-width: 360px) {
   .hero { padding: 2.25rem 1rem; }

@@ -368,20 +368,43 @@
     width: 44px;
     height: 44px;
   }
-
+  .projects-header h1 {
+    font-size: 2rem;
+    text-align: center;
+  }
+  .projects-header .muted {
+    font-size: .95rem;
+    text-align: center;
+  }
+.slide {
+    padding: 1rem 0.9rem .8rem;
+}
   .nav-cta svg {
     width: 24px;
     height: 24px;
   }
+  .projects-page {
+    padding: 1rem ;
+  }
+  .info-card {
+    padding: 1rem;
+  }
+  .info-card h2 {
+    font-size: 1.5rem;
+  }
+  .info-card .desc {
+    font-size: .95rem;
 }
-
+}
 @media (max-width: 850px) {
   .slide-inner {
     grid-template-columns: 1fr;
     gap: 1.4rem;
     text-align: center;
   }
-
+  .projects-header .muted,   .info-card .desc {
+    font-size: .95rem;
+  }
   .media {
     justify-items: center;
   }

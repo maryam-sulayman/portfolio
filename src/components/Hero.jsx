@@ -22,7 +22,7 @@ const SKILLS = [
   { name: "React", src: reactLogo },
   { name: "Vue", src: vue },
   { name: "Figma", src: figma },
-  { name: "Adobe XD", src: aws },
+  { name: "AWS", src: aws },
   { name: "Anaconda", src: anaconda },
   { name: "Canva", src: canva },
   { name: "MySQL", src: mysql },
