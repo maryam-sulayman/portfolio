@@ -146,3 +146,5 @@ input:focus, textarea:focus{
 
   .toast{ position: static; margin-top: .75rem; align-self: flex-end; }
 } 
+.btn-primary[disabled] { opacity:.7; cursor:not-allowed; }
+.toast.success { margin-top:.75rem; color:#0f0; }

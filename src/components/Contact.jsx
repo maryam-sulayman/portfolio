@@ -6,6 +6,7 @@ import "../styles/Contact.css";
 export default function Contact() {
   const [copied, setCopied] = useState(false);
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
   const email = "muhammedmariam80@yahoo.co.uk";
 
   const copyEmail = async () => {
@@ -14,6 +15,31 @@ export default function Contact() {
       setCopied(true);
       setTimeout(() => setCopied(false), 1600);
     } catch {}
+  };
+
+  // Netlify AJAX submit
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setSending(true);
+    const form = e.target;
+    const data = new FormData(form);
+
+    try {
+      await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(data).toString(),
+      });
+      setSent(true);
+      form.reset();
+      // hide success after a bit
+      setTimeout(() => setSent(false), 4000);
+    } catch (err) {
+      console.error("Form submit failed:", err);
+      alert("Sorry, something went wrong. Please email me instead.");
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -42,7 +68,7 @@ export default function Contact() {
               <Mail size={18} />
               <a href={`mailto:${email}`}>{email}</a>
               <button className="copy-btn" onClick={copyEmail} aria-label="Copy email">
-                {copied ? <Check size={16} className="copy-icon"/> : <Copy size={16} className="copy-icon"/>}
+                {copied ? <Check size={16} className="copy-icon" /> : <Copy size={16} className="copy-icon" />}
               </button>
             </li>
             <li>
@@ -89,23 +115,21 @@ export default function Contact() {
           method="POST"
           data-netlify="true"
           data-netlify-honeypot="bot-field"
+          onSubmit={handleSubmit}
           initial={{ opacity: 0, x: 24 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 0.5, delay: 0.1 }}
         >
-
+          {/* Netlify needs these at the top */}
+          <input type="hidden" name="form-name" value="contact" />
+          <p style={{ display: "none" }}>
+            <label>Don’t fill this out: <input name="bot-field" /></label>
+          </p>
 
           <div className="field-row">
             <div className="field">
               <label htmlFor="name">Your name</label>
-              <input type="hidden" name="form-name" value="contact" />
-                <p style={{ display: "none" }}>
-                <label>
-                    Don’t fill this out: <input name="bot-field" />
-                </label>
-                </p>
-
               <input id="name" name="name" type="text" required />
             </div>
             <div className="field">
@@ -116,7 +140,7 @@ export default function Contact() {
 
           <div className="field">
             <label htmlFor="subject">Subject (optional)</label>
-            <input id="subject" name="subject" type="text"  />
+            <input id="subject" name="subject" type="text" />
           </div>
 
           <div className="field">
@@ -125,13 +149,18 @@ export default function Contact() {
           </div>
 
           <div className="form-actions">
-            <button type="submit" className="btn-primary">Send message</button>
+            <button type="submit" className="btn-primary" disabled={sending}>
+              {sending ? "Sending..." : "Send message"}
+            </button>
             <a className="btn-ghost" href={`mailto:${email}?subject=Hello%20Maryam`}>
               Email instead
             </a>
           </div>
 
-          {sent && <div className="toast success">Thanks! I’ll get back to you soon.</div>}
+          {/* polite success note */}
+          <div aria-live="polite">
+            {sent && <div className="toast success">Thanks! I’ll get back to you soon.</div>}
+          </div>
         </motion.form>
       </div>
     </section>
