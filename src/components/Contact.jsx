@@ -5,9 +5,9 @@ import "../styles/Contact.css";
 
 export default function Contact() {
   const [copied, setCopied] = useState(false);
-  const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
   const email = "muhammedmariam80@yahoo.co.uk";
+  const [notice, setNotice] = useState(null);
 
   const copyEmail = async () => {
     try {
@@ -24,22 +24,21 @@ export default function Contact() {
     const form = e.target;
     const data = new FormData(form);
 
-    try {
-      await fetch("/", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams(data).toString(),
-      });
-      setSent(true);
-      form.reset();
-      // hide success after a bit
-      setTimeout(() => setSent(false), 4000);
-    } catch (err) {
-      console.error("Form submit failed:", err);
-      alert("Sorry, something went wrong. Please email me instead.");
-    } finally {
-      setSending(false);
-    }
+  try {
+  await fetch("/", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: new URLSearchParams(data).toString(),
+  });
+  form.reset();
+  setNotice({ type: "success", text: "Thanks! I’ll get back to you soon." });
+  // auto-hide after 8s (optional)
+  setTimeout(() => setNotice(null), 8000);
+} catch (err) {
+  console.error(err);
+  setNotice({ type: "error", text: "Sorry, something went wrong. Please email me instead." });
+}
+
   };
 
   return (
@@ -159,7 +158,22 @@ export default function Contact() {
 
           {/* polite success note */}
           <div aria-live="polite">
-            {sent && <div className="toast success">Thanks! I’ll get back to you soon.</div>}
+            <div aria-live="polite">
+  {notice && (
+    <div className={`toast ${notice.type}`}>
+      {notice.text}
+      <button
+        type="button"
+        className="toast-close"
+        aria-label="Dismiss"
+        onClick={() => setNotice(null)}
+      >
+        ×
+      </button>
+    </div>
+  )}
+</div>
+
           </div>
         </motion.form>
       </div>

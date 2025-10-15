@@ -31,7 +31,9 @@ html {
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
 }
-
+input, select, textarea, button {
+  font-size: 16px;
+}
 
 button {
   border: 1px solid transparent;
