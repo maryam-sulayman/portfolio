@@ -81,9 +81,6 @@ export default function Hero() {
             My journey into tech didn't follow the traditional path. After graduating with a First-class degree in Biomedical Sciences, I taught myself to code through online courses, bootcamps, and personal projects. I fell in love with the blend of creativity and logic that tech offers.
             </p>
             <p>
-      I started as a Frontend Developer, building responsive and accessible web applications. That's where I discovered my passion for UX/UI design. I loved how it's centred around understanding users and their needs, combining problem-solving with creativity.
-            </p>
-            <p>
               Today, I work across the full design and development process, from user research and wireframing to building full-stack applications with React and Vue. I use tools like Figma and Adobe XD to create intuitive, visually appealing interfaces that put users first.
             </p>
           </div>

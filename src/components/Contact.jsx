@@ -21,7 +21,7 @@ export default function Contact() {
       <div className="contact-header">
         <h1>Contact</h1>
         <p className="muted">
-          I’m currently open to UX/UI roles, Data analyst roles, and freelance work. Prefer email or LinkedIn -
+          I’m currently open to UX/UI roles and freelance work. Prefer email or LinkedIn -
           I usually reply within 24 hours.
         </p>
       </div>

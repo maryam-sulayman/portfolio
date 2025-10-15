@@ -130,7 +130,7 @@ input:focus, textarea:focus{
   .form-actions{ flex-direction: column; align-items: stretch; }
   .btn-primary, .btn-ghost{ width: 100%; text-align: center; }
  .contact-header .muted{ text-align: center; font-size: 0.95rem;}
- .info-list a {
+ .info-list a, .info-list li span {
     font-size: 0.85rem;
  }
  .info-card{
@@ -140,10 +140,9 @@ input:focus, textarea:focus{
  textarea {
   font-size: 0.85rem;
  }
+ .info-card-contact{ gap:1.2rem; }
 
-  /* bigger tap area for copy; avoid crowding */
-  .copy-btn{ width: 40px; height: 40px;; }
+  .copy-btn{ width: 30px; height: 30px;; }
 
-  /* make toast non-overlapping on tiny screens */
   .toast{ position: static; margin-top: .75rem; align-self: flex-end; }
 } 
