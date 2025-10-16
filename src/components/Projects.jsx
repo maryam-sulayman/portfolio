@@ -173,6 +173,18 @@ const onThumbClick = (pi, i) => {
         <p className="muted">A list of all my previous work.</p>
       </div>
 
+{/* Desktop-only dots at top */}
+<div className="proj-dots-top" aria-label="Project navigation">
+  {PROJECTS.map((_, i) => (
+    <button
+      key={i}
+      className={`dot ${i === projectIndex ? "active" : ""}`}
+      onClick={() => goToProject(i)}
+      aria-label={`Go to project ${i + 1} of ${PROJECTS.length}`}
+    />
+  ))}
+  <span className="proj-count">{projectIndex + 1} / {PROJECTS.length}</span>
+</div>
 
       <div className="carousel">
 <button className="nav-cta left" onClick={prevProject} disabled={projectIndex === 0}>
