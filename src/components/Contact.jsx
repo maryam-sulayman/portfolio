@@ -105,7 +105,7 @@ export default function Contact() {
           <div className="socials">
             <a
               className="social-btn"
-              href="https://www.linkedin.com/in/maryam-sulayman-4484601b3/"
+              href="https://www.linkedin.com/in/maryam-sulayman/"
               target="_blank" rel="noreferrer"
               aria-label="LinkedIn"
             >

@@ -8,7 +8,7 @@ export default function Footer() {
 
     <nav className="footer-links">
       <a href="mailto:muhammedmariam80@yahoo.co.uk">Email</a>
-      <a href="https://www.linkedin.com/in/maryam-sulayman-4484601b3/" target="_blank" rel="noreferrer">
+      <a href="https://www.linkedin.com/in/maryam-sulayman/" target="_blank" rel="noreferrer">
         LinkedIn
       </a>
     </nav>
