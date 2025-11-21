@@ -1,5 +1,6 @@
 import "../styles/Navbar.css";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -8,9 +9,9 @@ export default function Navbar() {
     <header className="navbar">
       <div className="nav-container">
 
-<h1 className="logo">
-  <a href="#hero">MS</a>
-</h1>
+        <h1 className="logo">
+          <Link to="/" onClick={() => window.scrollTo(0, 0)}>MS</Link>
+        </h1>
 
         <nav className={`nav-links ${open ? "open" : ""}`}>
           <a href="#about" onClick={() => setOpen(false)}>About</a>

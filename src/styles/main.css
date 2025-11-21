@@ -8,7 +8,7 @@
 html, body {
   width: 100%;
   max-width: 100%;
-  overflow-x: clip; /* safer than hidden */
+  overflow-x: hidden; /* safer than hidden */
   font-family: "Poppins", sans-serif;
   background: #212428;
   color: #f5f5f5;

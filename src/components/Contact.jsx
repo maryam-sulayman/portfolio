@@ -68,7 +68,7 @@ export default function Contact() {
       <div className="contact-header">
         <h1>Contact</h1>
         <p className="muted">
-          I’m currently open to UX/UI roles and freelance work. Prefer email or LinkedIn -
+          I’m currently open to UX/UI roles and front-end dev work. Prefer email or LinkedIn -
           I usually reply within 24 hours.
         </p>
       </div>
@@ -82,7 +82,7 @@ export default function Contact() {
           viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 0.5 }}
         >
-          <h3>Let’s connect 😊</h3>
+          <h3>Let’s connect</h3>
 
           <ul className="info-list">
             <li>
@@ -166,7 +166,7 @@ export default function Contact() {
 
           <div className="field">
             <label htmlFor="message">Message</label>
-            <textarea id="message" name="message" rows="6" placeholder="Tell me about your project…" required />
+            <textarea id="message" name="message" rows="6" placeholder="Feel free to message me about anything" required />
           </div>
 
           <div className="form-actions">
