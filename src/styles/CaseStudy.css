@@ -5,7 +5,7 @@
   --line: rgba(255, 255, 255, 0.08);
   --card: rgba(255, 255, 255, 0.04);
   --accent: #f2a6b3;
-  --stage-w: 1100px;
+  --stage-w: 1200px;
   --content-w: 1500px;
   --lb-toolbar-h: 52px;
   --lb-caption-h: 44px;
@@ -46,7 +46,7 @@
 
 /* ---------- hero visual + meta ---------- */
 .cs-hero-panel {
-  padding: 50px;
+  padding: 40px 24px 32px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -57,39 +57,15 @@
   margin-inline: auto;
 }
 
-.cs-panel {
-  width: 100%;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  overflow: visible;
-}
-
-.shot-desktop,
-.shot-mobile {
-  height: 500px;
-  width: auto;
-  display: block;
-}
-
-.shot-desktop {
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
-}
-
-.shot-mobile {
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
-}
-
 /* meta row */
 .cs-meta {
-  width: 100%;
+  width: 95%;
   margin-top: 12px;
   margin-bottom: 50px;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   font-size: 0.98rem;
+  margin-inline: auto;
 }
 
 .cs-meta > div {
@@ -136,6 +112,14 @@
   }
 }
 
+.case-header {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 10px;
+
+}
+
 /* ---------- main layout (sticky aside + main col) ---------- */
 .cs-layout {
   margin: 0 auto;
@@ -143,12 +127,19 @@
   display: grid;
   grid-template-columns: 260px minmax(0, 1fr); /* aside + main */
   gap: 56px;
+   position: relative; /* allowed */
 }
-
+.cs-aside {
+  position: sticky;
+  top: 80px;
+  align-self: start;
+  padding-right: 0;
+  z-index: 10;
+}
 
 /* Keep the main content in a readable column and give it side padding */
 .cs-main {
-  max-width: 1100px;
+  max-width: var(--stage-w);
   margin-inline: auto;
 }
 
@@ -166,15 +157,6 @@
   .cs-layout {
     padding: 24px 20px 72px;
   }
-}
-
-
-.cs-aside {
-  position: sticky;
-  top: 80px;
-  align-self: start;
-  padding-right: 0;
-  z-index: 10;
 }
 
 
@@ -246,7 +228,7 @@
 }
 .figure figcaption {
   color: var(--muted);
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   margin-top: 6px;
 }
 
@@ -280,12 +262,11 @@
 .brand-card img,
 .compare-card img,
 .final-card img,
-.ia-card img,
+.ia-card img, 
 .wire-piece img {
   width: 100%;
   height: auto;
   display: block;
-  border-radius: 8px;
 }
 
 /* persona grid */
@@ -364,23 +345,6 @@ a {
 img {
   max-width: 100%;
   display: block;
-}
-
-/* ---------- responsive tweaks for hero phones/laptop ---------- */
-@media (max-width: 840px) {
-  .cs-panel {
-    flex-direction: column;
-    align-items: center;
-    gap: 18px;
-  }
-  .shot-desktop {
-    width: 100%;
-    height: auto;
-  }
-  .shot-mobile {
-    width: 56%;
-    height: auto;
-  }
 }
 
 /* Accessible hiding utility */
@@ -664,8 +628,9 @@ img {
 }
 
 @media (max-width: 900px) {
-  .logo-grid {
-    grid-template-columns: 1fr;
+.logo-grid {
+    gap: 1rem;
+    grid-template-columns: 1.5fr 1fr;
   }
 
   .logo-iterations {
@@ -674,9 +639,8 @@ img {
     justify-content: center;
   }
 
-  .logo-iterations img {
-    max-width: 45%;
-  }
+ 
+  
 }
 
 /* Layout for before → after */
@@ -703,8 +667,7 @@ img {
   }
 
   .simple-arrow {
-    font-size: 1.6rem;
-    text-align: center;
+    display: none;
   }
 }
 
@@ -712,9 +675,19 @@ img {
   .cs-article {
     padding-block: 56px;
   }
-
   .cs-hero-panel {
     padding: 28px 16px;
+  }
+  .cs-meta .label {
+  margin-bottom: 0;
+  font-size: 0.95rem;
+}
+.cs-meta {
+  font-size: 0.85rem;
+}
+    .case-header {
+ height: 180px;
+ border-radius: 8px;
   }
 
   .cs-layout {
@@ -741,19 +714,6 @@ img {
     padding: 32px 20px;
   }
 
-  .cs-meta {
-    grid-template-columns: 1fr;
-    row-gap: 10px;
-    text-align: left;
-  }
-
-  .cs-meta > div,
-  .cs-meta > div:first-child,
-  .cs-meta > div:nth-child(2),
-  .cs-meta > div:last-child {
-    align-items: flex-start;
-    text-align: left;
-  }
 
   .cs-layout {
     padding: 24px 20px 80px;
@@ -773,7 +733,7 @@ img {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
   display: flex;
   flex-direction: column;
-  border-radius: 5px;
+  border-radius: 8px;
   gap: 6px;
 }
 
@@ -830,16 +790,7 @@ img {
   }
 
   .cs-aside {
-    grid-column: 1 / -1;
-    margin-left: 0;
-    border-right: none;
-    text-align: left;
-    padding-right: 0;
-    position: sticky;
-    top: 56px;
-    z-index: 5;
-    background: transparent;
-    padding-bottom: 8px;
+    display: none;
   }
 
   .cs-toc--desktop {
@@ -850,6 +801,9 @@ img {
     display: block;
     width: 100%;
     margin-bottom: 12px;
+        position: sticky;
+    top: 56px;              
+    z-index: 50;
   }
 
   .cs-toc-toggle {
@@ -858,8 +812,8 @@ img {
     justify-content: space-between;
     align-items: center;
     background: #14181f;
-    border-radius: 10px;
-    padding: 10px 14px;
+    border-radius: 5px;
+    padding: 15px;
     border: 1px solid rgba(255, 255, 255, 0.12);
     font-size: 0.95rem;
     color: var(--ink);
@@ -885,8 +839,8 @@ img {
   .cs-toc-sheet {
     margin-top: 8px;
     background: #181c23;
-    border-radius: 16px;
-    padding: 10px 14px 12px;
+    border-radius: 6px;
+    padding: 15px;
     box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55);
     display: flex;
     flex-direction: column;
@@ -908,34 +862,29 @@ img {
     border-right-color: transparent;
     color: var(--accent);
   }
+    .cs-section {
+    /* so anchor jumps don't hide headings behind the sticky bar */
+    scroll-margin-top: 60px;
+  }
 }
-
-/* base gallery row */
 .cs-carousel-row {
   display: grid;
   gap: 18px;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 }
-
 /* --- MOBILE DESIGN ONLY --- */
 .mobile-grid {
   /* force more, thinner columns for the phone screens */
   grid-template-columns: repeat(5, minmax(0, 1fr));
-}
 
-.mobile-grid .cs-carousel-item {
-  max-width: 190px;        /* fixed-ish width so captions don't break as easily */
 }
-
 .cs-carousel-item figcaption {
-  margin-top: 8px;
-  font-size: 0.9rem;
-  line-height: 1.4;
+  margin-top: 6px;
+  font-size: 0.8rem;
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;  /* adds ... when it’s too long */
+  text-overflow: ellipsis;  
 }
-
 
 .mobile-grid .cs-carousel-item img {
   width: 100%;
@@ -951,24 +900,21 @@ img {
   column-gap: 24px;
   margin-top: 2rem;
 }
+.wire-masonry .wire-piece {
+  break-inside: avoid;
+  margin-bottom: 24px;
+}
 
-/* On smaller screens, drop to 1 column so nothing gets squashed */
 @media (max-width: 900px) {
   .wire-masonry {
     column-count: 1;
   }
 }
 
-/* Important: stop figures breaking in half and control vertical spacing */
-.wire-masonry .wire-piece {
-  break-inside: avoid;
-  margin: 0 0 24px;
-}
-
 /* === MOBILE H-SCROLL: personas & journeys (grid-based, no size change) === */
 @media (max-width: 768px) {
   /* PERSONAS */
-  .persona-grid {
+  .persona-grid, .journey-grid {
     /* keep it a grid, just flow columns horizontally */
     grid-auto-flow: column;
     grid-auto-columns: 85%;
@@ -977,20 +923,88 @@ img {
     -webkit-overflow-scrolling: touch;
     scroll-snap-type: x mandatory;
   }
-  .persona-grid .persona-card {
+  .persona-grid .persona-card, .journey-grid .journey-card {
     scroll-snap-align: start;
   }
 
-  /* JOURNEYS */
-  .journey-grid {
-    grid-auto-flow: column;
-    grid-auto-columns: 85%;
-    overflow-x: auto;
-    padding-bottom: 8px;
-    -webkit-overflow-scrolling: touch;
-    scroll-snap-type: x mandatory;
-  }
-  .journey-grid .journey-card {
-    scroll-snap-align: start;
+  .tw-card p{
+    font-size: 0.9rem;
   }
 }
+
+
+/* tablet: 3 columns */
+@media (max-width: 1024px) {
+  .mobile-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    justify-content: center;
+  }
+    .cs-hero__inner {
+    padding:10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .cs-title {
+    font-size: 1.6rem;
+    line-height: 1.25;
+  }
+
+  /* hero panel spacing */
+  .cs-hero-panel {
+    padding: 20px 16px 24px;
+  }
+
+}
+/* make sure the badge can anchor to the card */
+.compare-card {
+  position: relative;
+}
+
+/* STAMP-STYLE LABEL */
+.ribbon {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+
+  padding: 6px 18px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+
+  display: inline-block;
+  border-radius: 4px;
+
+  /* stamp look */
+  border: 2px solid currentColor;
+  background: rgba(0, 0, 0, 0.35);  /* subtle dark glass behind text */
+  color: #fff;
+
+  transform-origin: center;
+  z-index: 10;
+  pointer-events: none;  /* so clicks still hit the figure */
+}
+
+/* individual tilts + colors */
+.ribbon.before {
+  color: #ff6b6b;        /* warm red */
+  transform: rotate(-6deg);
+}
+
+.ribbon.after {
+  color: #7de663;        /* soft mint green */
+  transform: rotate(5deg);
+}
+
+/* optional: slightly smaller on mobile */
+@media (max-width: 768px) {
+  .ribbon {
+    top: 12px;
+    left: 12px;
+    padding: 4px 14px;
+    font-size: 0.8rem;
+  }
+  
+}
+

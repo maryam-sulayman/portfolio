@@ -6,7 +6,7 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="navbar">
+    <header className="navbar site-header">
       <div className="nav-container">
 
         <h1 className="logo">

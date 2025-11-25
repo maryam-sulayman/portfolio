@@ -10,8 +10,8 @@ import journey1 from "../images/projects/casestudy/journey1.png";
 import journey2 from "../images/projects/casestudy/journey2.png";
 import journey3 from "../images/projects/casestudy/journey3.png";
 
-import desktopImg from "../images/projects/casestudy/frame11.png";
-import mobileImg from "../images/projects/casestudy/framee22.png";
+import caseheader from "../images/projects/casestudy/case-header.png";
+import mobile from "../images/projects/casestudy/mobile.png";
 
 import sitemap from "../images/projects/casestudy/sitemap.png";
 
@@ -315,8 +315,6 @@ export default function CaseStudy() {
       index: (m.index - 1 + m.items.length) % m.items.length,
     }));
 
-  const [isTocOpen, setIsTocOpen] = useState(false);
-
   /* ===== Section arrays ===== */
   const personas = [
     { src: img01, caption: "Image 1: Driver (visual impairment)." },
@@ -348,7 +346,7 @@ export default function CaseStudy() {
   const mobileDesign = [
     { src: hifi20, caption: "Image 1: Sign up." },
     { src: hifi4, caption: "Image 2: Sign in." },
-    { src: hifi16, caption: "Image 3: Password." },
+    { src: hifi16, caption: "Image 3: Password reset." },
     { src: hifi15, caption: "Image 4: Check email." },
     { src: hifi22, caption: "Image 5: Settings." },
     { src: hifi5, caption: "Image 6: Dashboard." },
@@ -390,52 +388,88 @@ export default function CaseStudy() {
     { id: "wireframes", label: "Wireframes" },
     { id: "redesign", label: "Dashboard redesign" },
     { id: "final", label: "Mobile & final design" },
+    { id: "extras", label: "Extras" },
     { id: "takeaways", label: "Key takeaways" },
   ];
 
   const [activeSection, setActiveSection] = useState("overview");
-  const [showMobileToc, setShowMobileToc] = useState(false);
+const [isTocOpen, setIsTocOpen] = useState(false);
+const [showMobileToc, setShowMobileToc] = useState(false);
+
+React.useEffect(() => {
+  const header = document.querySelector(".site-header");
+
+  const handleToggle = () => {
+    const overview = document.getElementById("overview");
+    if (!overview) return;
+
+    // only do this on tablet / mobile
+    if (window.innerWidth > 1000) {
+      setShowMobileToc(false);
+      header?.classList.remove("is-hidden");
+      return;
+    }
+
+    const rect = overview.getBoundingClientRect();
+    const headerHeight = header?.offsetHeight || 56;
+
+    // show dropdown when "Project overview" is about to reach
+    // just under where the header sits
+    const shouldShow = rect.top <= headerHeight + 8;
+
+    setShowMobileToc(shouldShow);
+
+    if (header) {
+      if (shouldShow) header.classList.add("is-hidden");
+      else header.classList.remove("is-hidden");
+    }
+  };
+
+  handleToggle();
+  window.addEventListener("scroll", handleToggle, { passive: true });
+  window.addEventListener("resize", handleToggle);
+
+  return () => {
+    window.removeEventListener("scroll", handleToggle);
+    window.removeEventListener("resize", handleToggle);
+    const header = document.querySelector(".site-header");
+    header?.classList.remove("is-hidden");
+  };
+}, []);
+
 
 React.useEffect(() => {
   const ids = sectionLinks.map((link) => link.id);
 
   const handleScroll = () => {
-    const offset = 160; // adjust spacing
-    const scrollPos = window.scrollY + offset;
-
+    const offset = 80; // “target” line from top of viewport
     let current = ids[0];
+    let closest = Infinity;
 
-    for (const id of ids) {
+    ids.forEach((id) => {
       const el = document.getElementById(id);
-      if (!el) continue;
+      if (!el) return;
 
-      if (scrollPos >= el.offsetTop) {
+      const rect = el.getBoundingClientRect();
+      const diff = Math.abs(rect.top - offset);
+
+      // only consider sections that are at least partly on screen
+      if (rect.bottom > 0 && diff < closest) {
+        closest = diff;
         current = id;
       }
-    }
+    });
 
-    // merge final & final-design
     if (current === "final-design") current = "final";
 
     setActiveSection(current);
   };
 
-  window.addEventListener("scroll", handleScroll);
-  handleScroll(); // initial run
+  window.addEventListener("scroll", handleScroll, { passive: true });
+  handleScroll(); // initial
 
   return () => window.removeEventListener("scroll", handleScroll);
 }, [sectionLinks]);
-
-React.useEffect(() => {
-  const checkMobileToc = () => {
-    const top = document.getElementById("overview")?.getBoundingClientRect().top;
-    setShowMobileToc(top <= 72);
-  };
-
-  checkMobileToc();
-  window.addEventListener("scroll", checkMobileToc);
-  return () => window.removeEventListener("scroll", checkMobileToc);
-}, []);
 
 
   const currentLabel =
@@ -459,18 +493,13 @@ React.useEffect(() => {
       {/* HERO VISUAL PANEL */}
       <section className="cs-hero-panel">
         <div className="cs-stage">
-          <div className="cs-panel">
+
             <img
-              src={mobileImg}
-              alt="BookMySpot mobile UI"
-              className="shot shot-mobile"
+              src={caseheader}
+              alt="BookMySpot UI"
+              className="case-header"
             />
-            <img
-              src={desktopImg}
-              alt="BookMySpot desktop UI"
-              className="shot shot-desktop"
-            />
-          </div>
+     
 
           <div className="cs-meta">
             <div>
@@ -496,64 +525,69 @@ React.useEffect(() => {
       <div className="cs-layout">
         {/* sticky nav / contents */}
         <aside className="cs-aside">
-          {/* desktop side list */}
-          <nav className="cs-toc cs-toc--desktop">
-            {sectionLinks.map((link) => (
-              <a
-                key={link.id}
-                href={`#${link.id}`}
-                className={activeSection === link.id ? "is-active" : ""}
-              >
-                {link.label}
-              </a>
-            ))}
-          </nav>
+  {/* desktop sidebar */}
+  <nav className="cs-toc cs-toc--desktop">
+    {sectionLinks.map((link) => (
+      <a
+        key={link.id}
+        href={`#${link.id}`}
+        className={activeSection === link.id ? "is-active" : ""}
+        onClick={() => setActiveSection(link.id)}
+      >
+        {link.label}
+      </a>
+    ))}
+  </nav>
 
-          {/* MOBILE / TABLET DROPDOWN NAV */}
-          {showMobileToc && (
-            <div className="cs-toc-dropdown">
-              <button
-                type="button"
-                className="cs-toc-toggle"
-                onClick={() => setIsTocOpen((open) => !open)}
-              >
-                <span className="cs-toc-label">{currentLabel}</span>
+</aside>
 
-                <svg
-                  className={`cs-toc-arrow ${isTocOpen ? "is-open" : ""}`}
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M12 6v8m0 0-4-4m4 4 4-4"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </button>
-
-              {isTocOpen && (
-                <nav className="cs-toc-sheet">
-                  {sectionLinks.map((link) => (
-                    <a
-                      key={link.id}
-                      href={`#${link.id}`}
-                      className={activeSection === link.id ? "is-active" : ""}
-                      onClick={() => setIsTocOpen(false)}
-                    >
-                      {link.label}
-                    </a>
-                  ))}
-                </nav>
-              )}
-            </div>
-          )}
-        </aside>
 
         <main className="cs-main">
+            {/* MOBILE / TABLET DROPDOWN NAV – lives in the main column */}
+              {showMobileToc && (
+  <div className="cs-toc-dropdown">
+    <button
+      type="button"
+      className="cs-toc-toggle"
+      onClick={() => setIsTocOpen((open) => !open)}
+    >
+      <span className="cs-toc-label">{currentLabel}</span>
+
+      <svg
+        className={`cs-toc-arrow ${isTocOpen ? "is-open" : ""}`}
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+      >
+        <path
+          d="M12 6v8m0 0-4-4m4 4 4-4"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    </button>
+
+    {isTocOpen && (
+      <nav className="cs-toc-sheet">
+        {sectionLinks.map((link) => (
+          <a
+            key={link.id}
+            href={`#${link.id}`}
+            className={activeSection === link.id ? "is-active" : ""}
+            onClick={() => {
+              setIsTocOpen(false);
+              setActiveSection(link.id);
+            }}
+          >
+            {link.label}
+          </a>
+        ))}
+      </nav>
+    )}
+  </div>
+)}
           {/* OVERVIEW */}
           <section id="overview" className="cs-section">
             <h2>Project overview</h2>
@@ -593,7 +627,7 @@ React.useEffect(() => {
           {/* PERSONAS */}
           <section id="personas" className="cs-section">
             <h2>User personas</h2>
-            <p className="section-intro">
+            <p className="section-intro"> 
               To design for real users, I started by understanding their needs.
               Through interviews and surveys, I identified three key user types,
               each with unique goals and challenges. One persona had a visual
@@ -700,60 +734,65 @@ React.useEffect(() => {
               locations, prices, and parking types instantly.
             </p>
 
-            <div className="comparison comparison--simple">
-              <figure
-                className="figure compare-card persona-card"
-                onClick={() => openGallery(redesignPair, 0)}
-              >
-                <img src={redesignPair[0].src} alt={redesignPair[0].caption} />
-                <figcaption>{redesignPair[0].caption}</figcaption>
-              </figure>
+<div className="comparison comparison--simple">
+  <figure
+    className="figure compare-card persona-card compare-card--before"
+    onClick={() => openGallery(redesignPair, 0)}
+  >
+    <span className="ribbon before">Before</span>
+    <img src={redesignPair[0].src} alt={redesignPair[0].caption} />
+    <figcaption>{redesignPair[0].caption}</figcaption>
+  </figure>
 
-              <div className="simple-arrow">
-                <svg
-                  width="44"
-                  height="44"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <path d="M4 12h16m-6-6l6 6-6 6" />
-                </svg>
-              </div>
+  <div className="simple-arrow">
+    <svg
+      width="44"
+      height="44"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+    >
+      <path d="M4 12h16m-6-6l6 6-6 6" />
+    </svg>
+  </div>
 
-              <figure
-                className="figure compare-card persona-card"
-                onClick={() => openGallery(redesignPair, 1)}
-              >
-                <img src={redesignPair[1].src} alt={redesignPair[1].caption} />
-                <figcaption>{redesignPair[1].caption}</figcaption>
-              </figure>
-            </div>
+  <figure
+    className="figure compare-card persona-card compare-card--after"
+    onClick={() => openGallery(redesignPair, 1)}
+  >
+    <span className="ribbon after">After</span>
+    <img src={redesignPair[1].src} alt={redesignPair[1].caption} />
+    <figcaption>{redesignPair[1].caption}</figcaption>
+  </figure>
+</div>
+
+
           </section>
 
           {/* MOBILE DESIGN */}
-          <section id="final" className="cs-section">
-            <h2>Mobile Design</h2>
-            <p className="section-intro">
-              The mobile design was refined to minimize steps and make the
-              booking process easy. I focused on simplifying navigation and
-              interactions for quick parking searches and bookings.
-            </p>
+<section id="final" className="cs-section">
+  <h2>Mobile design</h2>
+  <p className="section-intro">
+    The mobile design was refined to minimize steps and make the
+    booking process easy. I focused on simplifying navigation and
+    interactions for quick parking searches and bookings.
+  </p>
 
-            <div className="cs-carousel-row mobile-grid">
-              {mobileDesign.map((m, i) => (
-                <figure
-                  key={i}
-                  className="figure compare-card persona-card cs-carousel-item"
-                  onClick={() => openGallery(mobileDesign, i)}
-                >
-                  <img src={m.src} alt={m.caption || "Mobile screen"} />
-                  <figcaption>{m.caption || "Mobile screen"}</figcaption>
-                </figure>
-              ))}
-            </div>
-          </section>
+  <div className="cs-carousel-row mobile-grid">
+    {mobileDesign.map((m, i) => (
+      <figure
+        key={i}
+        className="figure compare-card persona-card cs-carousel-item"
+        onClick={() => openGallery(mobileDesign, i)}
+      >
+        <img src={m.src} alt={m.caption || "Mobile screen"} />
+        <figcaption>{m.caption || "Mobile screen"}</figcaption>
+      </figure>
+    ))}
+  </div>
+</section>
+
 
           {/* FINAL DESIGN */}
 <section id="final-design" className="cs-section">
@@ -779,56 +818,7 @@ React.useEffect(() => {
   </div>
 </section>
 
-
-          {/* LEARNINGS */}
-          <section id="takeaways" className="takeaways cs-section">
-            <h2>Key takeaways</h2>
-            <p className="section-intro">
-              Three important lessons from this project that shaped how I
-              approach design.
-            </p>
-
-            <div className="tw-grid">
-              <article className="tw-card">
-                <div className="tw-card-head">
-                  <span className="tw-step">01</span>
-                  <h3>Accessibility from day one</h3>
-                </div>
-                <p>
-                  Baking in contrast, focus order and readable spacing early
-                  made the whole system sturdier. It wasn’t a bolt-on—it shaped
-                  better decisions across web and mobile.
-                </p>
-              </article>
-
-              <article className="tw-card">
-                <div className="tw-card-head">
-                  <span className="tw-step">02</span>
-                  <h3>Less is more</h3>
-                </div>
-                <p>
-                  Replacing the static hero with an interactive booking grid
-                  reduced clicks by 40%. <br />
-                  Users found available spots faster and understood next steps
-                  without confusion.
-                </p>
-              </article>
-
-              <article className="tw-card">
-                <div className="tw-card-head">
-                  <span className="tw-step">03</span>
-                  <h3>Test early and often</h3>
-                </div>
-                <p>
-                  Small, visible changes like clearer labels and progress
-                  indicators made a bigger impact than huge redesigns. Testing
-                  wireframes early with users saved weeks of development rework.
-                </p>
-              </article>
-            </div>
-          </section>
-
-          {/* EXTRAS */}
+  {/* EXTRAS */}
           <section id="extras" className="extras cs-section">
             <h2>Extras</h2>
             <div className="cs-section">
@@ -838,7 +828,7 @@ React.useEffect(() => {
                 visualize the real-world problem BookMySpot aims to solve. It
                 highlights the pain points of both drivers searching for parking
                 and owners with unused spaces, setting the foundation for the
-                product’s purpose.
+                product's purpose.
               </p>
 
               <div className="cs-carousel-row">
@@ -894,6 +884,51 @@ React.useEffect(() => {
               </div>
             </div>
           </section>
+          </section>
+
+          {/* LEARNINGS */}
+          <section id="takeaways" className="takeaways cs-section">
+            <h2>Key takeaways</h2>
+            <p className="section-intro">
+              Three important lessons from this project that shaped how I
+              approach design:
+            </p>
+
+            <div className="tw-grid">
+              <article className="tw-card">
+                <div className="tw-card-head">
+                  <span className="tw-step">01</span>
+                  <h3>Accessibility from day one</h3>
+                </div>
+                <p>
+                  Designing with contrast, structure and readability in mind from
+                  the start ensured the platform was usable for everyone,
+                  including those with visual impairments. 
+                  <br/> Early accessibility
+                  checks prevented costly redesigns later.
+                </p>
+              </article>
+
+              <article className="tw-card">
+                <div className="tw-card-head">
+                  <span className="tw-step">02</span>
+                  <h3>Less is more</h3>
+                </div>
+                <p>
+                  Replacing the static hero with an interactive booking grid let users discover and reserve nearby spots directly from the landing view. <br/>This reduced the number of steps to complete a booking, improved feature discoverability during testing, and increased engagement.
+                </p>
+              </article>
+
+              <article className="tw-card">
+                <div className="tw-card-head">
+                  <span className="tw-step">03</span>
+                  <h3>Test early and often</h3>
+                </div>
+                <p>
+                  Small refinements based on user feedback made a big difference. Regular usability tests helped identify pain points and areas for improvement, ensuring the final design truly met user needs.
+                </p>
+              </article>
+            </div>
           </section>
 
         </main>
