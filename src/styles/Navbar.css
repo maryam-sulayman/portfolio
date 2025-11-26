@@ -92,40 +92,4 @@
   opacity: 1;
 }
 
-/* main header behaviour on small screens */
-@media (max-width: 1000px) {
-  .site-header {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    transition: transform 0.2s ease;
-  }
 
-  .site-header.is-hidden {
-    transform: translateY(-100%);
-  }
-
-  /* hide desktop sidebar, show in-main dropdown */
-  .cs-aside {
-    display: none;
-  }
-
-  .cs-toc--desktop {
-    display: none;
-  }
-
-  .cs-toc-dropdown {
-    display: block;
-    width: 100%;
-    margin-bottom: 12px;
-
-    position: sticky;
-    top: 0;          /* sits where the header was */
-    z-index: 90;
-  }
-
-  /* make sure headings don't get hidden when you click links */
-  .cs-section {
-    scroll-margin-top: 80px; /* header + dropdown height approx */
-  }
-}

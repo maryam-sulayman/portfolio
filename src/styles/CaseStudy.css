@@ -57,6 +57,13 @@
   margin-inline: auto;
 }
 
+.case-header {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 10px;
+}
+
 /* meta row */
 .cs-meta {
   width: 95%;
@@ -95,6 +102,7 @@
   margin-bottom: 4px;
 }
 
+/* entry animation */
 .cs-hero-header,
 .cs-meta {
   opacity: 0;
@@ -112,23 +120,16 @@
   }
 }
 
-.case-header {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 10px;
-
-}
-
 /* ---------- main layout (sticky aside + main col) ---------- */
 .cs-layout {
   margin: 0 auto;
   padding: 32px 24px 120px;
   display: grid;
-  grid-template-columns: 260px minmax(0, 1fr); /* aside + main */
+  grid-template-columns: 260px minmax(0, 1fr);
   gap: 56px;
-   position: relative; /* allowed */
+  position: relative;
 }
+
 .cs-aside {
   position: sticky;
   top: 80px;
@@ -137,34 +138,17 @@
   z-index: 10;
 }
 
-/* Keep the main content in a readable column and give it side padding */
+/* main column */
 .cs-main {
   max-width: var(--stage-w);
   margin-inline: auto;
 }
 
-/* Give sections a little breathing room left/right */
-.cs-section {
-  margin-bottom: 50px;
-  border-bottom: 1px solid var(--line);
-  padding: 24px 0 32px;
-}
-.cs-section:last-child {
-  border-bottom: none;
-}
-
-@media (max-width: 600px) {
-  .cs-layout {
-    padding: 24px 20px 72px;
-  }
-}
-
-
 /* ---------- sections ---------- */
 .cs-section {
   margin-bottom: 50px;
   border-bottom: 1px solid var(--line);
-  padding-block: 0;
+  padding: 24px 0 32px;
 }
 .cs-section:last-child {
   border-bottom: none;
@@ -218,7 +202,7 @@
   }
 }
 
-/* ---------- common figure/card styles ---------- */
+/* ---------- figure/card styles ---------- */
 .figure {
   margin: 16px 0;
 }
@@ -243,8 +227,7 @@
   border: 1px solid var(--line);
   border-radius: 10px;
   padding: 10px;
-  transition: transform 0.25s ease, box-shadow 0.25s ease,
-    border-color 0.25s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
 .persona-card:hover,
 .journey-card:hover,
@@ -262,7 +245,7 @@
 .brand-card img,
 .compare-card img,
 .final-card img,
-.ia-card img, 
+.ia-card img,
 .wire-piece img {
   width: 100%;
   height: auto;
@@ -324,14 +307,13 @@
   gap: 14px;
   align-items: start;
 }
-
 @media (min-width: 720px) {
   .comparison {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-/* insights list */
+/* insights text */
 .section-intro {
   color: var(--muted);
   margin: -6px 0 14px;
@@ -461,7 +443,6 @@ img {
 }
 .lb__btn {
   appearance: none;
-  -webkit-appearance: none;
   background: transparent;
   border: none;
   color: rgba(255, 255, 255, 0.95);
@@ -506,17 +487,13 @@ img {
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
   transition: background 0.15s ease, transform 0.12s ease;
-  outline: none !important;
-  box-shadow: none !important;
 }
-
 .lb__arrow--left {
   left: 14px;
 }
 .lb__arrow--right {
   right: 14px;
 }
-
 .lb__arrow:hover {
   background: rgba(255, 255, 255, 0.22);
   transform: translateY(-50%) scale(1.05);
@@ -556,12 +533,12 @@ img {
 /* --- Key Takeaways --- */
 .takeaways {
   padding-bottom: 20px;
- 
 }
 .tw-card p {
   margin-top: 0.4rem;
   line-height: 1.7;
 }
+
 /* default: 3 columns on big screens */
 .tw-grid {
   display: grid;
@@ -578,7 +555,6 @@ img {
   box-shadow: 0 14px 30px rgba(0, 0, 0, 0.35);
   transition: transform 0.18s ease, border-color 0.18s ease;
 }
-
 .tw-card:hover {
   transform: translateY(-2px);
   border-color: var(--accent);
@@ -613,7 +589,6 @@ img {
   color: var(--accent);
 }
 
-
 /* Breakpoints so they don't feel squashed */
 @media (max-width: 1200px) {
   .tw-grid {
@@ -625,22 +600,6 @@ img {
   .tw-grid {
     grid-template-columns: 1fr;
   }
-}
-
-@media (max-width: 900px) {
-.logo-grid {
-    gap: 1rem;
-    grid-template-columns: 1.5fr 1fr;
-  }
-
-  .logo-iterations {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
- 
-  
 }
 
 /* Layout for before → after */
@@ -665,12 +624,12 @@ img {
     gap: 1.5rem;
     justify-content: center;
   }
-
   .simple-arrow {
     display: none;
   }
 }
 
+/* small phones */
 @media (max-width: 480px) {
   .cs-article {
     padding-block: 56px;
@@ -679,30 +638,26 @@ img {
     padding: 28px 16px;
   }
   .cs-meta .label {
-  margin-bottom: 0;
-  font-size: 0.95rem;
-}
-.cs-meta {
-  font-size: 0.85rem;
-}
-    .case-header {
- height: 180px;
- border-radius: 8px;
+    margin-bottom: 0;
+    font-size: 0.95rem;
   }
-
+  .cs-meta {
+    font-size: 0.85rem;
+  }
+  .case-header {
+    height: 180px;
+    border-radius: 8px;
+  }
   .cs-layout {
     padding: 16px;
     gap: 24px;
   }
-
   .cs-title {
     font-size: 1.7rem;
   }
-
   .cs-section > h2 {
     font-size: 1.35rem;
   }
-
   .section-intro {
     font-size: 0.95rem;
   }
@@ -713,13 +668,10 @@ img {
   .cs-hero-panel {
     padding: 32px 20px;
   }
-
-
   .cs-layout {
     padding: 24px 20px 80px;
     gap: 32px;
   }
-
   .cs-aside {
     padding-right: 0;
     border-right: none;
@@ -745,7 +697,7 @@ img {
   color: var(--ink);
   text-decoration: none;
   opacity: 0.8;
-  padding: 6px 0 6px 1.6rem;      
+  padding: 6px 0 6px 1.6rem;
 }
 
 .cs-toc a::before {
@@ -757,7 +709,7 @@ img {
   width: 6px;
   height: 6px;
   border-radius: 999px;
-  background: transparent;    
+  background: transparent;
 }
 
 /* hover state */
@@ -771,17 +723,17 @@ img {
   color: var(--accent);
   opacity: 1;
 }
-
 .cs-toc a.is-active::before {
-  background: var(--accent);                     /* solid pink dot */
-  box-shadow: 0 0 0 6px rgba(242, 166, 179, 0.18);  /* soft glow like the example */
+  background: var(--accent);
+  box-shadow: 0 0 0 6px rgba(242, 166, 179, 0.18);
 }
 
+/* dropdown base (desktop: none) */
 .cs-toc-dropdown {
   display: none;
 }
 
-/* ----- Small screens: sticky dropdown ----- */
+/* ----- Small screens: sticky dropdown & fading header ----- */
 @media (max-width: 1000px) {
   .cs-layout {
     grid-template-columns: 1fr;
@@ -789,10 +741,7 @@ img {
     padding: 24px;
   }
 
-  .cs-aside {
-    display: none;
-  }
-
+  .cs-aside,
   .cs-toc--desktop {
     display: none;
   }
@@ -800,101 +749,132 @@ img {
   .cs-toc-dropdown {
     display: block;
     width: 100%;
-    margin-bottom: 12px;
-        position: sticky;
-    top: 56px;              
+    position: sticky;
+    top: 10px;
     z-index: 50;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
   }
 
-  .cs-toc-toggle {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #14181f;
-    border-radius: 5px;
-    padding: 15px;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    font-size: 0.95rem;
-    color: var(--ink);
-    cursor: pointer;
+  .cs-toc-dropdown.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
   }
 
-  .cs-toc-label {
-    flex: 1;
-    text-align: left;
+
+.cs-toc-toggle {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #181a1d;              
+  border-radius: 5px;
+  border: none;
+  padding: 14px 16px;
+  font-size: 0.95rem;
+  color: var(--ink);
+  cursor: pointer;
+  font-weight: 200;                
+}
+
+.cs-toc-label {
+  flex: 1;
+  text-align: left;
+  font-weight: 600;               
+}
+
+.cs-toc-arrow {
+  width: 22px;
+  height: 22px;
+  transition: transform 0.18s ease;
+}
+
+/* dropdown panel */
+.cs-toc-sheet {
+  margin-top: -2px;
+  background: #181a1d;             
+  border-radius: 0 0 5px 5px;      
+  border: none;       
+  padding: 10px 16px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+
+.cs-toc-sheet button {
+  background: none;
+  border: none;
+  padding: 6px 0;
+  text-align: left;
+  font: inherit;                             
+  color: var(--ink);
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+/* hover + active state */
+.cs-toc-sheet button:hover {
+  color: var(--accent);
+}
+
+.cs-toc-sheet button.is-active {
+  color: var(--accent);
+}
+
+  /* so anchor jumps don't hide headings behind sticky bar */
+  .cs-section {
+    scroll-margin-top: 110px;
   }
 
-  .cs-toc-arrow {
-    width: 18px;
-    height: 18px;
-    transition: transform 0.18s ease;
-    transform: rotate(0deg);
+  /* main site header fade out instead of jumping */
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    transition: opacity 0.2s ease;
+  }
+  .site-header.is-hidden {
+    opacity: 0;
+    pointer-events: none;
   }
 
-  .cs-toc-arrow.is-open {
-    transform: rotate(180deg);
-  }
-
-  .cs-toc-sheet {
-    margin-top: 8px;
-    background: #181c23;
-    border-radius: 6px;
-    padding: 15px;
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55);
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-
-  .cs-toc-sheet a {
-    color: var(--ink);
-    text-decoration: none;
-    padding: 4px 0;
-    font-size: 0.95rem;
-  }
-
-  .cs-toc-sheet a:hover {
-    color: var(--accent);
-  }
-
-  .cs-toc-sheet a.is-active {
-    border-right-color: transparent;
-    color: var(--accent);
-  }
-    .cs-section {
-    /* so anchor jumps don't hide headings behind the sticky bar */
-    scroll-margin-top: 60px;
+  .cs-article {
+    padding-block: 0;
   }
 }
+
+/* carousel grid */
 .cs-carousel-row {
   display: grid;
   gap: 18px;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 }
+
 /* --- MOBILE DESIGN ONLY --- */
 .mobile-grid {
-  /* force more, thinner columns for the phone screens */
   grid-template-columns: repeat(5, minmax(0, 1fr));
-
 }
+
 .cs-carousel-item figcaption {
   margin-top: 6px;
   font-size: 0.8rem;
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;  
+  text-overflow: ellipsis;
 }
 
 .mobile-grid .cs-carousel-item img {
   width: 100%;
   height: auto;
   max-height: none;
-  aspect-ratio: 9 / 19;    /* keeps them tall & “phone-ish” */
+  aspect-ratio: 9 / 19;
   object-fit: contain;
 }
 
-/* ---------- wireframe / final design masonry (2 columns) ---------- */
+/* wireframe / final design masonry */
 .wire-masonry {
   column-count: 2;
   column-gap: 24px;
@@ -904,18 +884,16 @@ img {
   break-inside: avoid;
   margin-bottom: 24px;
 }
-
 @media (max-width: 900px) {
   .wire-masonry {
     column-count: 1;
   }
 }
 
-/* === MOBILE H-SCROLL: personas & journeys (grid-based, no size change) === */
+/* === MOBILE H-SCROLL: personas & journeys === */
 @media (max-width: 768px) {
-  /* PERSONAS */
-  .persona-grid, .journey-grid {
-    /* keep it a grid, just flow columns horizontally */
+  .persona-grid,
+  .journey-grid {
     grid-auto-flow: column;
     grid-auto-columns: 85%;
     overflow-x: auto;
@@ -923,24 +901,24 @@ img {
     -webkit-overflow-scrolling: touch;
     scroll-snap-type: x mandatory;
   }
-  .persona-grid .persona-card, .journey-grid .journey-card {
+  .persona-grid .persona-card,
+  .journey-grid .journey-card {
     scroll-snap-align: start;
   }
 
-  .tw-card p{
+  .tw-card p {
     font-size: 0.9rem;
   }
 }
 
-
-/* tablet: 3 columns */
+/* tablet: 3 columns for mobile screens */
 @media (max-width: 1024px) {
   .mobile-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     justify-content: center;
   }
-    .cs-hero__inner {
-    padding:10px;
+  .cs-hero__inner {
+    padding: 10px;
   }
 }
 
@@ -949,14 +927,12 @@ img {
     font-size: 1.6rem;
     line-height: 1.25;
   }
-
-  /* hero panel spacing */
   .cs-hero-panel {
     padding: 20px 16px 24px;
   }
-
 }
-/* make sure the badge can anchor to the card */
+
+/* badge on compare cards */
 .compare-card {
   position: relative;
 }
@@ -966,38 +942,31 @@ img {
   position: absolute;
   top: 16px;
   left: 16px;
-
   padding: 6px 18px;
   font-size: 0.9rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-
   display: inline-block;
   border-radius: 4px;
-
-  /* stamp look */
   border: 2px solid currentColor;
-  background: rgba(0, 0, 0, 0.35);  /* subtle dark glass behind text */
+  background: rgba(0, 0, 0, 0.35);
   color: #fff;
-
   transform-origin: center;
   z-index: 10;
-  pointer-events: none;  /* so clicks still hit the figure */
+  pointer-events: none;
 }
 
 /* individual tilts + colors */
 .ribbon.before {
-  color: #ff6b6b;        /* warm red */
+  color: #ff6b6b;
   transform: rotate(-6deg);
 }
-
 .ribbon.after {
-  color: #7de663;        /* soft mint green */
+  color: #7de663;
   transform: rotate(5deg);
 }
 
-/* optional: slightly smaller on mobile */
 @media (max-width: 768px) {
   .ribbon {
     top: 12px;
@@ -1005,6 +974,4 @@ img {
     padding: 4px 14px;
     font-size: 0.8rem;
   }
-  
 }
-
