@@ -15,18 +15,18 @@ import anaconda from "../images/anaconda.svg";
 import { motion } from "framer-motion";
 
 const SKILLS = [
-  { name: "Python", src: python },
   { name: "HTML5", src: html5 },
   { name: "CSS3", src: css3 },
   { name: "JavaScript", src: js },
   { name: "React", src: reactLogo },
   { name: "Vue", src: vue },
-  { name: "Figma", src: figma },
+  { name: "MySQL", src: mysql },
+  { name: "Python", src: python },
   { name: "AWS", src: aws },
   { name: "Anaconda", src: anaconda },
-  { name: "Canva", src: canva },
-  { name: "MySQL", src: mysql },
+  { name: "Figma", src: figma },
   { name: "Photoshop", src: ps },
+  { name: "Canva", src: canva },
 ];
 
 export default function Hero() {
@@ -46,8 +46,8 @@ export default function Hero() {
               Hi, I'm <span>Maryam Sulayman</span>
             </h1>
             <p>
-              I'm a motivated UX/UI designer with experience building and designing user-friendly interfaces. 
-              I'm also a web and mobile developer with a focus on user experience and accessibility.
+  I'm a web and mobile developer with experience building user-friendly interfaces. 
+  I work mainly with HTML, CSS, and JavaScript, and build front-end components using React.
             </p>
 
             <div className="hero-buttons">
@@ -75,15 +75,15 @@ export default function Hero() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <div className="about-card">
-            <h2>About me</h2>
-            <p>
-            My journey into tech didn't follow the traditional path. After graduating with a First-class degree in Biomedical Sciences, I taught myself to code through online courses, bootcamps, and personal projects. I fell in love with the blend of creativity and logic that tech offers.
-            </p>
-            <p>
-              Today, I work across the full design and development process, from user research and wireframing to building full-stack applications with React and Vue. I use tools like Figma and Adobe XD to create intuitive, visually appealing interfaces that put users first.
-            </p>
-          </div>
+ <div className="about-card">
+  <h2>About me</h2>
+  <p>
+    My journey into tech didn't follow the traditional path. After graduating with a First-class degree in Biomedical Sciences, I taught myself to code through online courses, bootcamps, and personal projects.
+  </p>
+<p>
+  Today, I build production-ready applications with React and Node.js. I'm comfortable with Git for version control, databases like MongoDB and MySQL, and Figma for design collaboration. I create interfaces that are responsive, accessible, and work seamlessly across devices.
+</p>
+</div>
                {/* full-width Skills card */}
         <motion.div
           className="skills-card skills-responsive"
@@ -91,7 +91,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.35 }}
         >
-          <h3>SKILLS</h3>
+          <h3>Skills</h3>
           <ul className="skills-grid" aria-label="Skills">
             {SKILLS.map((s) => (
               <li key={s.name} className="skill">

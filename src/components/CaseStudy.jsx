@@ -430,47 +430,54 @@ React.useEffect(() => {
 
 
   /* === Toggle mobile TOC + fade header === */
-  React.useEffect(() => {
-    const header = document.querySelector(".site-header");
-    const overview = document.getElementById("overview");
-    if (!overview) return;
+ /* === Toggle mobile TOC + fade header === */
+React.useEffect(() => {
+  const header = document.querySelector(".site-header");
+  const overview = document.getElementById("overview");
+  if (!overview || !header) return;
 
-    const getTriggerY = () => {
-      const headerHeight = header?.offsetHeight || 56;
-      // show TOC a bit before overview fully reaches under header
-      return overview.offsetTop - headerHeight - 40;
-    };
+  const getTriggerY = () => {
+    const headerHeight = header.offsetHeight || 56;
+    // point where we want main nav to disappear
+    // and temp nav to appear: just as Project overview
+    // reaches under the header
+    return overview.offsetTop - headerHeight;
+  };
 
-    let triggerY = getTriggerY();
+  const handleScrollOrResize = () => {
+    const isDesktop = window.innerWidth > 1000;
 
-    const handleScroll = () => {
-      if (window.innerWidth > 1000) {
-        setShowMobileToc(false);
-        header?.classList.remove("is-hidden");
-        return;
-      }
+    if (isDesktop) {
+      // desktop: always show main header, no temp nav
+      setShowMobileToc(false);
+      header.classList.remove("is-hidden");
+      return;
+    }
 
-      const visible = window.scrollY >= triggerY;
-      setShowMobileToc(visible);
-      if (header) header.classList.toggle("is-hidden", visible);
-    };
+    const triggerY = getTriggerY();
+    const scrolledY = window.scrollY;
+    const shouldSwap = scrolledY >= triggerY;
 
-    const handleResize = () => {
-      triggerY = getTriggerY();
-      handleScroll();
-    };
+    // temp nav visibility
+    setShowMobileToc(shouldSwap);
 
-    handleScroll();
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    window.addEventListener("resize", handleResize);
+    // main nav visibility
+    header.classList.toggle("is-hidden", shouldSwap);
+  };
 
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", handleResize);
-      const h = document.querySelector(".site-header");
-      h?.classList.remove("is-hidden");
-    };
-  }, []);
+  // run once on mount
+  handleScrollOrResize();
+
+  window.addEventListener("scroll", handleScrollOrResize, { passive: true });
+  window.addEventListener("resize", handleScrollOrResize);
+
+  return () => {
+    window.removeEventListener("scroll", handleScrollOrResize);
+    window.removeEventListener("resize", handleScrollOrResize);
+    header.classList.remove("is-hidden");
+  };
+}, []);
+
 
   const currentLabel =
     sectionLinks.find((s) => s.id === activeSection)?.label || "Overview";
@@ -564,33 +571,41 @@ React.useEffect(() => {
             </button>
 
            {isTocOpen && (
-  <nav className="cs-toc-sheet">
-    {sectionLinks.map((link) => (
-      <button
-        key={link.id}
-        type="button"
-        className={activeSection === link.id ? "is-active" : ""}
-        onClick={() => {
-          const el = document.getElementById(link.id);
-          if (el) {
-            const headerOffset = 430; 
-            const rect = el.getBoundingClientRect();
-            const scrollTop = window.scrollY+ rect.top - headerOffset;
+<nav className="cs-toc-sheet">
+  {sectionLinks.map((link) => (
+    <button
+      key={link.id}
+      type="button"
+      className={activeSection === link.id ? "is-active" : ""}
+      onClick={() => {
+        const el = document.getElementById(link.id);
+        const header = document.querySelector(".site-header");
+        const dropdown = document.querySelector(".cs-toc-dropdown");
 
-            window.scrollTo({
-              top: scrollTop,
-              behavior: "smooth",
-            });
-          }
+        if (el) {
+          const headerHeight = header?.offsetHeight || 56;
+          const dropdownHeight = dropdown?.offsetHeight || 56;
 
-          setIsTocOpen(false);
-          setActiveSection(link.id); 
-        }}
-      >
-        {link.label}
-      </button>
-    ))}
-  </nav>
+          const offset = headerHeight + dropdownHeight + 12; // little breathing room
+
+          const rect = el.getBoundingClientRect();
+          const scrollTop = window.scrollY + rect.top - offset;
+
+          window.scrollTo({
+            top: scrollTop,
+            behavior: "smooth",
+          });
+        }
+
+        setIsTocOpen(false);
+        setActiveSection(link.id);
+      }}
+    >
+      {link.label}
+    </button>
+  ))}
+</nav>
+
 )}
 
           </div>

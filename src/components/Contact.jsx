@@ -68,8 +68,7 @@ export default function Contact() {
       <div className="contact-header">
         <h1>Contact</h1>
         <p className="muted">
-          I’m currently open to UX/UI roles and front-end dev work. Prefer email or LinkedIn -
-          I usually reply within 24 hours.
+          I'm currently open to front-end developer and web developer roles. Prefer email or LinkedIn - I usually reply within 24 hours.
         </p>
       </div>
 
@@ -105,7 +104,7 @@ export default function Contact() {
           <div className="socials">
             <a
               className="social-btn"
-              href="https://www.linkedin.com/in/maryam-sulayman/"
+              href="https://www.linkedin.com/in/maryam-sulayman-4484601b3/"
               target="_blank" rel="noreferrer"
               aria-label="LinkedIn"
             >

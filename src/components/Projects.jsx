@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import "../styles/Projects.css";
 
@@ -60,8 +60,8 @@ const PROJECTS = [
     type: "mobile",
     images: [book1, book2, book3, book5, book6, book7, book8, book9],
     description:
-      "A parking app that helps users find and reserve available parking spaces nearby. I worked on simplifying the user journey through user research, ensuring that each step feels intuitive and fast. The prototype focuses on accessibility and real-world usability.",
-    tags: ["Parking App", "User Journey", "Low/Hi-Fidelity Prototypes", "Maps & Geolocation"],
+      "A full-stack parking reservation platform built with React, Node.js, and MongoDB. Features include real-time availability, calendar-based bookings, user authentication, and a rating system. I developed custom REST APIs, implemented client-side form validation, and wrote tests using Jest and React Testing Library.",
+    tags: ["React", "Node.js", "MongoDB", "REST APIs", "Jest", "Mobile-First Design"],
      caseStudy: "/bookmyspot-case-study"
   },
   {
@@ -69,24 +69,24 @@ const PROJECTS = [
     images: [health1, health2, health3, health4, health5, health6],
     type: "mobile",
     description:
-      "A mobile health app that helps users track their cardiovascular health and lifestyle habits. It estimates cardiovascular risk using user inputs like diet, sleep, and activity levels. I focused on creating a clean, friendly interface with clear feedback and easy navigation.",
-    tags: ["Health App", "Data-Driven UI", "Habit Tracking", "Figma", "Wireframing"],
+      "A mobile health tracking app that estimates cardiovascular risk based on user inputs like diet, sleep, and activity. Built with React Native, it features data visualization, habit tracking, and personalized health insights. I focused on creating an intuitive interface with clear data presentation and smooth user flows.",
+    tags: ["React Native", "Data Visualization", "Mobile Development", "Health Tech", "Firebase"],
   },
   {
     title: "Hotel Hive",
     images: [hotel1, hotel2, hotel3, hotel4, hotel5, hotel6, hotel7, hotel8],
     type: "mobile",
     description:
-      "A mobile booking app designed to make finding and reserving hotel rooms fast and easy. I built a modern UI using React Native and Firebase.",
-    tags: ["Hotel Booking", "Figma", "UI Design", "Information Architecture", "Usability Testing"],
+      "A hotel booking mobile app built with React Native and Firebase. Users can browse hotels, view availability, and make reservations. I developed the complete UI, integrated Firebase for real-time data management, and built an admin panel for staff to manage bookings and customer information.",
+    tags: ["React Native", "Firebase", "Mobile App", "Expo Go", "Admin Dashboard"],
   },
   {
     title: "BookMySpot - web",
     type: "desktop",
     images: [bookdesktop1, bookdesktop2, bookdesktop3, bookdesktop4, bookdesktop5, bookdesktop6, bookdesktop7, bookdesktop8],
     description:
-      "The web version of BookMySpot, built for desktop users who prefer a larger interface. It mirrors the mobile flow but adds advanced admin and analytics dashboards. I designed and developed it using React, Node.js, and MySQL for a full-stack experience.",
-    tags: ["Admin Dashboards", "Responsive Web Design", "Forms & Validation", "Role-based UI"],
+      "The web version of BookMySpot, designed for desktop users with advanced features. Built with React, Node.js, and MySQL, it includes admin dashboards, analytics, role-based access control, and comprehensive booking management. I handled both frontend and backend development for a complete full-stack experience.",
+    tags: ["React", "Node.js", "MySQL", "Admin Dashboards", "Full-Stack", "Responsive Design"],
     caseStudy: "/bookmyspot-case-study"
   },
   {
@@ -94,27 +94,29 @@ const PROJECTS = [
     type: "desktop",
     images: [chow1, chow2, chow3, chow4, chow5, chow6, chow7, chow8],
     description:
-      "A concept redesign of a food delivery platform aimed at improving user flow and overall brand feel. I reworked the restaurant discovery experience, making it easier for users to browse, compare, and order their meals quickly.",
-    tags: ["Food Delivery", "Figma", "Content Strategy", "User Flow", "Web"],
+      "A concept redesign of a food delivery platform focused on improving the restaurant discovery and ordering experience. Built as a responsive web application, I reworked the UI architecture to make browsing and comparing restaurants faster and more intuitive, with improved search and filtering functionality.",
+    tags: ["Web Design", "Responsive UI", "React", "User Flow", "Frontend Development"],
   },
   {
     title: "Group5",
     images: [food1, food2, food3],
     type: "mobile",
     description:
-      "A collaborative food ordering app designed for group or team meals. The goal was to make coordinating shared orders effortless while keeping the UI simple and visually consistent across screens.",
-    tags: ["Real-time UX", "Mobile-First", "Figma", "Accessibility", "Usability Testing"],
+      "A collaborative food ordering app designed for group meals and team orders. Built with React Native, it allows multiple users to add items to a shared cart with real-time updates. I implemented the core ordering logic, real-time synchronization, and created a clean, accessible mobile interface.",
+    tags: ["React Native", "Real-time Sync", "Mobile Development", "Collaborative Features", "Firebase"],
   },
   {
     title: "Lasgidi",
     type: "desktop",
     images: [lagos1, lagos2, lagos3, lagos4,],
     description:
-      "A tourism and events website showcasing the best of Lagos. Built with HTML and CSS, it focuses on responsive design and smooth navigation across devices, creating an engaging browsing experience for visitors.",
-    tags: ["Responsive Design", "Figma", "Information Architecture", "Content Design"],
+      "A tourism and events website showcasing Lagos attractions. Built with HTML, CSS, and JavaScript, it features responsive design, smooth animations, and optimized performance across devices. I focused on clean code, cross-browser compatibility, and creating an engaging browsing experience for visitors.",
+    tags: ["HTML5", "CSS3", "JavaScript", "Responsive Design", "Performance Optimization"],
   },
 ];
+
 export default function Projects() {
+   const location = useLocation();
   const [projectIndex, setProjectIndex] = useState(0);
   const [imageIndices, setImageIndices] = useState([]);
   const viewportRef = useRef(null);
@@ -133,10 +135,29 @@ export default function Projects() {
     return () => window.removeEventListener("keydown", onKey);
   }, [projectIndex, imageIndices]);
 
-  const clamp = (n, min, max) => Math.max(min, Math.min(n, max));
-  const prevProject = () => setProjectIndex(i => clamp(i - 1, 0, PROJECTS.length - 1));
-  const nextProject = () => setProjectIndex(i => clamp(i + 1, 0, PROJECTS.length - 1));
-  const goToProject = (i) => setProjectIndex(clamp(i, 0, PROJECTS.length - 1));
+  // Handle URL parameter on component mount
+useEffect(() => {
+  const params = new URLSearchParams(location.search);
+  const projectParam = params.get('project');
+  if (projectParam !== null) {
+    const index = parseInt(projectParam, 10);
+    if (!isNaN(index) && index >= 0 && index < PROJECTS.length) {
+      setProjectIndex(index);
+    }
+  }
+}, []);
+
+const clamp = (n, min, max) => Math.max(min, Math.min(n, max));
+
+const prevProject = () =>
+  setProjectIndex(i => clamp(i - 1, 0, PROJECTS.length - 1));
+
+const nextProject = () =>
+  setProjectIndex(i => clamp(i + 1, 0, PROJECTS.length - 1));
+
+const goToProject = (i) =>
+  setProjectIndex(clamp(i, 0, PROJECTS.length - 1));
+
 
   const setImg = (pi, val) =>
     setImageIndices(arr => {
@@ -175,7 +196,7 @@ export default function Projects() {
   <div className="projects-headline">
     <h1>My projects</h1>
   </div>
-  <p className="muted">A list of all my previous work.</p>
+  <p className="muted">A showcase of my web and mobile development work.</p>
 </div>
 
       {/* Desktop-only dots at top */}
