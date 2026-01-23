@@ -121,6 +121,7 @@ export default function Projects() {
   const [imageIndices, setImageIndices] = useState([]);
   const viewportRef = useRef(null);
   const slideRefs = useRef([]);
+const hasSetFromUrl = useRef(false);
 
   useEffect(() => {
     setImageIndices(PROJECTS.map(() => 0));
@@ -135,17 +136,21 @@ export default function Projects() {
     return () => window.removeEventListener("keydown", onKey);
   }, [projectIndex, imageIndices]);
 
-  // Handle URL parameter on component mount
 useEffect(() => {
-  const params = new URLSearchParams(location.search);
-  const projectParam = params.get('project');
+  if (hasSetFromUrl.current) return;
+
+  const params = new URLSearchParams(window.location.search);
+  const projectParam = params.get("project");
+
   if (projectParam !== null) {
-    const index = parseInt(projectParam, 10);
-    if (!isNaN(index) && index >= 0 && index < PROJECTS.length) {
+    const index = Number(projectParam);
+    if (!Number.isNaN(index) && index >= 0 && index < PROJECTS.length) {
       setProjectIndex(index);
+      hasSetFromUrl.current = true;
     }
   }
 }, []);
+
 
 const clamp = (n, min, max) => Math.max(min, Math.min(n, max));
 
